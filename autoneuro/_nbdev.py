@@ -3,9 +3,20 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"LookupNormalTransform": "00_core.ipynb",
-         "FILTER_MAPPINGS": "00_core.ipynb"}
+         "FILTER_MAPPINGS": "00_core.ipynb",
+         "build_merged_transformers": "00_core.ipynb",
+         "build_from_yaml": "00_core.ipynb",
+         "EncodingTransform": "00_core.ipynb",
+         "ScaledRegressionNode": "00_core.ipynb",
+         "ScaledRegressionTransform": "00_core.ipynb",
+         "LoadRawAndNormMixin": "01_domains.ipynb",
+         "AbstractTest": "01_domains.ipynb",
+         "AbstractDomain": "01_domains.ipynb",
+         "MemoryDomain": "01_domains.ipynb"}
 
-modules = ["core.py"]
+modules = ["core.py",
+           "domains.py",
+           "calculators.py"]
 
 doc_url = "https://judowill.github.io/autoneuro/"
 

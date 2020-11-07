@@ -1,0 +1,240 @@
+short_name: 'heatonBVMT'
+reference: 'Excel Sheet Lookup Conversion'
+
+operations:
+  - type: normative_lookup
+    measure_col: immediate
+    filter_cols: ['Age']
+    out_name: 'heaton_immediate'
+
+    table:
+      - filter: (18 <= Age) & (Age <= 21)
+        mean: 28.74
+        std: 4.32
+      - filter: (20 <= Age) & (Age <= 23)
+        mean: 28.44
+        std: 4.38
+      - filter: (24 <= Age) & (Age <= 25)
+        mean: 27.83
+        std: 4.48
+      - filter: (26 <= Age) & (Age <= 29)
+        mean: 27.52
+        std: 4.54
+      - filter: (30 <= Age) & (Age <= 33)
+        mean: 26.92
+        std: 4.64
+      - filter: (34 <= Age) & (Age <= 37)
+        mean: 26.31
+        std: 4.75
+      - filter: (38 <= Age) & (Age <= 41)
+        mean: 25.7
+        std: 4.86
+      - filter: (42 <= Age) & (Age <= 45)
+        mean: 25.09
+        std: 4.96
+      - filter: (46 <= Age) & (Age <= 49)
+        mean: 24.48
+        std: 5.07
+      - filter: (50 <= Age) & (Age <= 53)
+        mean: 23.87
+        std: 5.18
+      - filter: (54 <= Age) & (Age <= 58)
+        mean: 23.27
+        std: 5.28
+      - filter: (59 <= Age) & (Age <= 62)
+        mean: 22.66
+        std: 5.39
+      - filter: (63 <= Age) & (Age <= 66)
+        mean: 22.05
+        std: 5.5
+      - filter: (67 <= Age) & (Age <= 70)
+        mean: 21.44
+        std: 5.6
+      - filter: (71 <= Age) & (Age <= 74)
+        mean: 20.83
+        std: 5.71
+      - filter: (75 <= Age) & (Age <= 79)
+        mean: 20.22
+        std: 5.82
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 13.5
+        std: 5.1
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 15.0
+        std: 6.1
+
+  - type: normative_lookup
+    measure_col: retention
+    filter_cols: ['Age']
+    out_name: 'heaton_retention'
+    table:
+      - filter: (18 <= Age) & (Age <= 21)
+        mean: 0.9534
+        std: 0.066
+      - filter: (20 <= Age) & (Age <= 23)
+        mean: 0.9493
+        std: 0.0726
+      - filter: (24 <= Age) & (Age <= 25)
+        mean: 0.9508
+        std: 0.0804
+      - filter: (26 <= Age) & (Age <= 29)
+        mean: 0.9667
+        std: 0.0631
+      - filter: (30 <= Age) & (Age <= 33)
+        mean: 0.962
+        std: 0.0474
+      - filter: (34 <= Age) & (Age <= 37)
+        mean: 0.9407
+        std: 0.0884
+      - filter: (38 <= Age) & (Age <= 41)
+        mean: 0.9163
+        std: 0.0992
+      - filter: (42 <= Age) & (Age <= 45)
+        mean: 0.9455
+        std: 0.0642
+      - filter: (46 <= Age) & (Age <= 49)
+        mean: 0.9338
+        std: 0.0853
+      - filter: (50 <= Age) & (Age <= 53)
+        mean: 0.9596
+        std: 0.0731
+      - filter: (54 <= Age) & (Age <= 58)
+        mean: 0.94
+        std: 0.0843
+      - filter: (59 <= Age) & (Age <= 62)
+        mean: 0.937
+        std: 0.087
+      - filter: (63 <= Age) & (Age <= 66)
+        mean: 0.895
+        std: 0.116
+      - filter: (67 <= Age) & (Age <= 70)
+        mean: 0.903
+        std: 0.126
+      - filter: (71 <= Age) & (Age <= 74)
+        mean: 0.878
+        std: 0.143
+      - filter: (75 <= Age) & (Age <= 79)
+        mean: 0.864
+        std: 0.147
+
+
+  - type: normative_lookup
+    measure_col: delay
+    filter_cols: ['Age']
+    out_name: 'heaton_delay'
+    table:
+      - filter: (18 <= Age) & (Age <= 21)
+        mean: 10.79
+        std: 1.37
+      - filter: (20 <= Age) & (Age <= 23)
+        mean: 10.68
+        std: 1.41
+      - filter: (24 <= Age) & (Age <= 25)
+        mean: 10.46
+        std: 1.48
+      - filter: (26 <= Age) & (Age <= 29)
+        mean: 10.35
+        std: 1.52
+      - filter: (30 <= Age) & (Age <= 33)
+        mean: 10.13
+        std: 1.6
+      - filter: (34 <= Age) & (Age <= 37)
+        mean: 9.91
+        std: 1.67
+      - filter: (38 <= Age) & (Age <= 41)
+        mean: 9.69
+        std: 1.75
+      - filter: (42 <= Age) & (Age <= 45)
+        mean: 9.47
+        std: 1.83
+      - filter: (46 <= Age) & (Age <= 49)
+        mean: 9.25
+        std: 1.9
+      - filter: (50 <= Age) & (Age <= 53)
+        mean: 9.03
+        std: 1.98
+      - filter: (54 <= Age) & (Age <= 58)
+        mean: 8.81
+        std: 2.05
+      - filter: (59 <= Age) & (Age <= 62)
+        mean: 8.59
+        std: 2.13
+      - filter: (63 <= Age) & (Age <= 66)
+        mean: 8.37
+        std: 2.2
+      - filter: (67 <= Age) & (Age <= 70)
+        mean: 8.15
+        std: 2.28
+      - filter: (71 <= Age) & (Age <= 74)
+        mean: 7.93
+        std: 2.36
+      - filter: (75 <= Age) & (Age <= 79)
+        mean: 7.71
+        std: 2.43
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 6.2
+        std: 2.8
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 6.5
+        std: 2.9
+
+  - type: normative_lookup
+    measure_col: recognition
+    filter_cols: ['Age']
+    out_name: 'heaton_recognition'
+
+    table:
+      - filter: (18 <= Age) & (Age <= 21)
+        mean: 5.91
+        std: 0.31
+      - filter: (20 <= Age) & (Age <= 23)
+        mean: 5.92
+        std: 0.26
+      - filter: (24 <= Age) & (Age <= 25)
+        mean: 5.89
+        std: 0.3
+      - filter: (26 <= Age) & (Age <= 29)
+        mean: 5.97
+        std: 0.15
+      - filter: (30 <= Age) & (Age <= 33)
+        mean: 5.97
+        std: 0.15
+      - filter: (34 <= Age) & (Age <= 37)
+        mean: 5.8
+        std: 0.56
+      - filter: (38 <= Age) & (Age <= 41)
+        mean: 5.86
+        std: 0.35
+      - filter: (42 <= Age) & (Age <= 45)
+        mean: 5.93
+        std: 0.24
+      - filter: (46 <= Age) & (Age <= 49)
+        mean: 5.85
+        std: 0.35
+      - filter: (50 <= Age) & (Age <= 53)
+        mean: 5.83
+        std: 0.44
+      - filter: (54 <= Age) & (Age <= 58)
+        mean: 5.71
+        std: 0.58
+      - filter: (59 <= Age) & (Age <= 62)
+        mean: 5.86
+        std: 0.44
+      - filter: (63 <= Age) & (Age <= 66)
+        mean: 5.92
+        std: 0.48
+      - filter: (67 <= Age) & (Age <= 70)
+        mean: 5.55
+        std: 0.94
+      - filter: (71 <= Age) & (Age <= 74)
+        mean: 5.64
+        std: 0.91
+      - filter: (75 <= Age) & (Age <= 79)
+        mean: 5.5
+        std: 0.79
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 5.6
+        std: 0.7
+      - filter: (80 <= Age) & (Age <= 80)
+        mean: 5.6
+        std: 0.7

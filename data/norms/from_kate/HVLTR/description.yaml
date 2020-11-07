@@ -1,0 +1,17 @@
+Group: 'Kate'
+short_name: 'kate_HVLT'
+Reference: 'Excel Sheet Lookup Conversion'
+Population_Description: '?'
+lookup_table: "lookup_table.csv"
+universal_cols:
+  - Age__eq
+groupings:
+  HVLTtotal:
+    - HVLTtotal__mean
+    - HVLTtotal__std
+  HVLTdelay:
+    - HVLTdelay__mean
+    - HVLTdelay__std
+  HVLTrecog:
+    - HVLTrecog__mean
+    - HVLTrecog__std
