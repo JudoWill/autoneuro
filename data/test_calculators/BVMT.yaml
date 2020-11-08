@@ -9,7 +9,7 @@ operations:
     out_field: immediate
   - type: agg
     method: 'max'
-    fields: ['trial1', 'trial2']
+    fields: ['trial2', 'trial3']
     out_field: retention_denom
   - type: equation
     equation: 'delay/retention_denom'

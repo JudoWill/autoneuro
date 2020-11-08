@@ -4,25 +4,25 @@ reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
 operations:
 
   - type: regression_norm
-    fields: ['race_cat', 'age','education', 'immediate_scaled', 'norman_gender']
+    fields: ['norman_race', 'age','education', 'immediate_scaled', 'norman_gender']
     out_field: 'norman_immediate'
     result_type: 'standard_score'
     regressions:
-      - filter: '(race_cat == 0 ) & ((age >= 18) & (age <= 66))'
+      - filter: '(norman_race == 0 ) & ((age >= 18) & (age <= 66))'
         norm: "((immediate_scaled-(0.2589*(education-14.11)+(-0.0515)*(age-37.62) + 0.9276*norman_gender + 10.0712))/2.8912)*10 + 50"
-      - filter: '(race_cat == 1) & ((age >= 18) & (age <= 66))'
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
         norm: "((immediate_scaled-(0.2834*(education-13.86)+(-0.1125)*(age-40.63)+1.0394*norman_gender + 8.0679))/2.5701)*10 + 50"
 
 
   - type: regression_norm
-    fields: ['race_cat', 'age','education', 'delay_scaled', 'norman_gender']
+    fields: ['norman_race', 'age','education', 'delay_scaled', 'norman_gender']
     out_field: 'norman_delay'
     result_type: 'standard_score'
     regressions:
-      - filter: '(race_cat == 1) & ((age >= 18) & (age <= 66))'
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
         norm: "((delay_scaled-(0.2267*(education-13.86) + (-0.1262)*(age-40.63) + 0.8593*norman_gender + 7.691))/2.5197)*10 + 50"
         result: 'standard_score'
 
-      - filter: '(race_cat == 0) & ((age >= 18) & (age <= 66))'
+      - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'
         norm: "((delay_scaled-(0.2084*(education-14.11) + (-0.0286)*(age-37.62) + 10.3007))/2.6989)*10 + 50"
         result: 'standard_score'

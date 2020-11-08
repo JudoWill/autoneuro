@@ -3,11 +3,14 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"AbstractCalculator": "00_calculators.ipynb",
-         "AbstractOperation": "00_calculators.ipynb",
-         "EquationOperation": "00_calculators.ipynb",
-         "NormativeLookup": "00_calculators.ipynb",
-         "BinnedScalingOperator": "00_calculators.ipynb",
-         "RegressionNormOperator": "00_calculators.ipynb",
+         "AbstractOperation": "01_operators.ipynb",
+         "EquationOp": "01_operators.ipynb",
+         "AggregationOp": "01_operators.ipynb",
+         "ClipOp": "01_operators.ipynb",
+         "NormativeLookupOp": "01_operators.ipynb",
+         "BinnedScalingOp": "01_operators.ipynb",
+         "CategoricalOp": "01_operators.ipynb",
+         "RegressionNormOp": "01_operators.ipynb",
          "LoadRawAndNormMixin": "03_domains.ipynb",
          "AbstractTest": "03_domains.ipynb",
          "AbstractDomain": "03_domains.ipynb",
@@ -21,6 +24,7 @@ index = {"AbstractCalculator": "00_calculators.ipynb",
          "ScaledRegressionTransform": "09_core.ipynb"}
 
 modules = ["calculators.py",
+           "operators.py",
            "domains.py",
            "core.py"]
 

@@ -2,6 +2,20 @@ short_name: 'norman_bvmt_scaling'
 reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
 
 operations:
+  - type: categorical
+    in_field: gender
+    out_field: norman_gender
+    mapping:
+      male: 0
+      female: 1
+
+  - type: categorical
+    in_field: race
+    out_field: norman_race
+    mapping:
+      white: 0
+      AA: 1
+
   - type: binned_scaling
     measure_col: delay
     bins:
