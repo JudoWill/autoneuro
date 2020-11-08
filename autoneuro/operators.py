@@ -263,12 +263,14 @@ class NormativeLookupOp(AbstractOperation):
     def explain(self, row):
 
         flt, mean, std = self.lookup_norm(row)
+        data = self.to_series(row)
+
 
         if flt is None:
             data = self.to_series(row)
-            return f'Could not find matching filter for {data[self.filter_cols]}'
+            return f'{self.result_fields[0]}: Could not find matching filter for {data[self.filter_cols]}'
         else:
-            return f'Matched {flt}, Expecting {mean} +- {std}'
+            return f'{self.result_fields[0]}: Matched {flt}, Expecting {mean} +- {std}, Observed: {data[self.measure_col]}'
 
     def process_single(self, row):
 
@@ -433,6 +435,14 @@ class RegressionNormOp(AbstractOperation):
         if hits: #Currently only implementing "first"
             reg = hits[0]
             val = pd.eval(reg['norm'], local_dict=data.to_dict())
+
+            if (self.result_type == 'standard_score') | (self.result_type == 'tscore'):
+                val = (val - 50)/10
+            elif (self.result_type  == 'zscore') | (self.result_type  == 'zscale'):
+                pass
+            else:
+                raise ValueError(f'Did not understand result_type: {self.result_type}')
+
             return reg, val
         return None, None
 

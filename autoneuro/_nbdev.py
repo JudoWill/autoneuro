@@ -3,6 +3,7 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"AbstractCalculator": "00_calculators.ipynb",
+         "TestCalculator": "00_calculators.ipynb",
          "AbstractOperation": "01_operators.ipynb",
          "EquationOp": "01_operators.ipynb",
          "AggregationOp": "01_operators.ipynb",
