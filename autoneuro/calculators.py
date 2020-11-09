@@ -23,8 +23,8 @@ class AbstractCalculator(object):
 
         Parameters
         ----------
-        fields : list[str]
-        transforms : list[AbstractOperation]
+        name : list[str]
+        operations : list[AbstractOperation]
         """
 
         self.name = name
