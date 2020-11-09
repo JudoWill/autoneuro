@@ -1,8 +1,9 @@
 {
   "autoneuro": {
     "Overview": "/",
-    "Title": "initial_explore.html",
+    "Calculators": "calculators.html",
     "Operators": "operators.html",
-    "AutoNeuro": "core.html"
+    "Domains": "domains.html",
+    "Title": "initial_explore.html"
   }
 }

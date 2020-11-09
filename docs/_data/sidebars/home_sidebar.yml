@@ -10,14 +10,17 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Title
-      url: initial_explore.html
+      title: Calculators
+      url: calculators.html
     - output: web,pdf
       title: Operators
       url: operators.html
     - output: web,pdf
-      title: AutoNeuro
-      url: core.html
+      title: Domains
+      url: domains.html
+    - output: web,pdf
+      title: Title
+      url: initial_explore.html
     output: web
     title: autoneuro
   output: web
