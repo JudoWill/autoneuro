@@ -11,21 +11,13 @@ index = {"AbstractCalculator": "00_calculators.ipynb",
          "NormativeLookupOp": "01_operators.ipynb",
          "BinnedScalingOp": "01_operators.ipynb",
          "CategoricalOp": "01_operators.ipynb",
-         "RegressionNormOp": "01_operators.ipynb",
+         "EquationFilterOp": "01_operators.ipynb",
          "AbstractDomain": "03_domains.ipynb",
-         "MemoryDomain": "03_domains.ipynb",
-         "LookupNormalTransform": "09_core.ipynb",
-         "FILTER_MAPPINGS": "09_core.ipynb",
-         "build_merged_transformers": "09_core.ipynb",
-         "build_from_yaml": "09_core.ipynb",
-         "EncodingTransform": "09_core.ipynb",
-         "ScaledRegressionNode": "09_core.ipynb",
-         "ScaledRegressionTransform": "09_core.ipynb"}
+         "MemoryDomain": "03_domains.ipynb"}
 
 modules = ["calculators.py",
            "operators.py",
-           "domains.py",
-           "core.py"]
+           "domains.py"]
 
 doc_url = "https://judowill.github.io/autoneuro/"
 
