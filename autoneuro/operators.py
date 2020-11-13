@@ -440,6 +440,8 @@ class EquationFilterOp(AbstractOperation):
                 val = (val - 50)/10
             elif (self.result_type  == 'zscore') | (self.result_type  == 'zscale'):
                 pass
+            elif self.result_type == 'other':
+                pass
             else:
                 raise ValueError(f'Did not understand result_type: {self.result_type}')
 

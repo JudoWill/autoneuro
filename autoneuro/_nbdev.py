@@ -13,7 +13,8 @@ index = {"AbstractCalculator": "00_calculators.ipynb",
          "CategoricalOp": "01_operators.ipynb",
          "EquationFilterOp": "01_operators.ipynb",
          "AbstractDomain": "03_domains.ipynb",
-         "MemoryDomain": "03_domains.ipynb"}
+         "MemoryDomain": "03_domains.ipynb",
+         "ExecutiveFunctionDomain": "03_domains.ipynb"}
 
 modules = ["calculators.py",
            "operators.py",
