@@ -1,0 +1,167 @@
+short_name: 'norman_stroop'
+reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
+
+operations:
+  - type: categorical
+    in_field: gender
+    out_field: norman_gender
+    mapping:
+      male: 0
+      female: 1
+
+  - type: categorical
+    in_field: race
+    out_field: norman_race
+    mapping:
+      white: 0
+      AA: 1
+
+  - type: binned_scaling
+    measure_col: stroop_color
+    bins:
+      - scaled: 18
+        min: 107
+      - scaled: 17
+        min: 100
+      - scaled: 16
+        min: 97
+      - scaled: 15
+        min: 93
+      - scaled: 14
+        min: 89
+      - scaled: 13
+        min: 85
+      - scaled: 12
+        min: 80
+      - scaled: 11
+        min: 76
+      - scaled: 10
+        min: 74
+      - scaled: 9
+        min: 70
+      - scaled: 8
+        min: 66
+      - scaled: 7
+        min: 62
+      - scaled: 6
+        min: 58
+      - scaled: 5
+        min: 49
+      - scaled: 4
+        min: 43
+      - scaled: 3
+        min: 40
+      - scaled: 2
+        min: 0
+
+
+  - type: binned_scaling
+    measure_col: stroop_color_word
+    bins:
+      - scaled: 17
+        min: 65
+      - scaled: 16
+        min: 63
+      - scaled: 15
+        min: 59
+      - scaled: 14
+        min: 56
+      - scaled: 13
+        min: 53
+      - scaled: 12
+        min: 49
+      - scaled: 11
+        min: 46
+      - scaled: 10
+        min: 42
+      - scaled: 9
+        min: 39
+      - scaled: 8
+        min: 36
+      - scaled: 7
+        min: 32
+      - scaled: 6
+        min: 29
+      - scaled: 5
+        min: 25
+      - scaled: 4
+        min: 22
+      - scaled: 3
+        min: 0
+
+
+  - type: binned_scaling
+    measure_col: stroop_word
+    bins:
+      - scaled: 18
+        min: 145
+      - scaled: 17
+        min: 134
+      - scaled: 16
+        min: 128
+      - scaled: 15
+        min: 123
+      - scaled: 14
+        min: 118
+      - scaled: 13
+        min: 114
+      - scaled: 12
+        min: 109
+      - scaled: 11
+        min: 106
+      - scaled: 10
+        min: 101
+      - scaled: 9
+        min: 97
+      - scaled: 8
+        min: 89
+      - scaled: 7
+        min: 83
+      - scaled: 6
+        min: 77
+      - scaled: 5
+        min: 71
+      - scaled: 4
+        min: 67
+      - scaled: 3
+        min: 66
+      - scaled: 2
+        min: 0
+
+  - type: equation_filter
+    fields: ['norman_race', 'age', 'education', 'stroop_color_scaled', 'norman_gender']
+    out_field: 'norman_stroop_color'
+    result_type: 'standard_score'
+    equations:
+      - filter: '(norman_race == 0 ) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_color_scaled - (0.0941*(education-13.92)+10.4444))/2.9435)*10+50"
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_color_scaled - (0.3102*(education-13.92)+(-0.1006)*(age-40.67)+1.4915*norman_gender+8.2672))/2.6643)*10+50"
+
+
+  - type: equation_filter
+    fields: ['norman_race', 'age','education', 'stroop_color_word_scaled', 'norman_gender']
+    out_field: 'norman_stroop_color_word'
+    result_type: 'standard_score'
+    equations:
+      - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_color_word_scaled - (0.2479*(education-13.92)+(-0.0828)*(age-36.22)+10.3968))/2.6002)*10+50"
+        result: 'standard_score'
+
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_color_word_scaled - (0.2363*(education-13.94)+(-0.1219)*(age-40.67)+1.9479*norman_gender+7.449))/2.2658)*10+50"
+        result: 'standard_score'
+
+  - type: equation_filter
+    fields: ['norman_race', 'age','education', 'stroop_word_scaled', 'norman_gender']
+    out_field: 'norman_stroop_word'
+    result_type: 'standard_score'
+    equations:
+      - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_word_scaled - (0.0819*(education - 13.92) + 0.0038*(age - 36.17) + (-0.4022)*norman_gender + 10.2102)-(-0.00003))/2.9435)*10 + 50"
+        result: 'standard_score'
+
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
+        norm: "((stroop_word_scaled - (0.3557*(education-13.92)+(-0.0866)*(age-40.67)+1.2315*norman_gender+8.3263)-(0.00095))/2.8127)*10+50"
+        result: 'standard_score'
+

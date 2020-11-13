@@ -1,7 +1,77 @@
-short_name: 'norman_bvmt_scaling'
+short_name: 'norman_bvmt'
 reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
 
 operations:
+  - type: categorical
+    in_field: gender
+    out_field: norman_gender
+    mapping:
+      male: 0
+      female: 1
+
+  - type: categorical
+    in_field: race
+    out_field: norman_race
+    mapping:
+      white: 0
+      AA: 1
+
+  - type: binned_scaling
+    measure_col: delay
+    bins:
+      - scaled: 14
+        min: 12
+      - scaled: 11
+        min: 11
+      - scaled: 9
+        min: 10
+      - scaled: 8
+        min: 9
+      - scaled: 7
+        min: 8
+      - scaled: 6
+        min: 7
+      - scaled: 5
+        min: 5
+      - scaled: 4
+        min: 4
+      - scaled: 3
+        min: 3
+      - scaled: 2
+        min: 0
+
+  - type: binned_scaling
+    measure_col: immediate
+    bins:
+      - scaled: 17
+        min: 36
+      - scaled: 15
+        min: 34
+      - scaled: 14
+        min: 33
+      - scaled: 13
+        min: 32
+      - scaled: 12
+        min: 30
+      - scaled: 11
+        min: 28
+      - scaled: 10
+        min: 26
+      - scaled: 9
+        min: 24
+      - scaled: 8
+        min: 21
+      - scaled: 7
+        min: 19
+      - scaled: 6
+        min: 16
+      - scaled: 5
+        min: 14
+      - scaled: 4
+        min: 10
+      - scaled: 3
+        min: 0
+
 
   - type: equation_filter
     fields: ['norman_race', 'age','education', 'immediate_scaled', 'norman_gender']
