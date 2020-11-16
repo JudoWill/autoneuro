@@ -271,7 +271,7 @@ class NormativeLookupOp(AbstractOperation):
             return f'{self.result_fields[0]}: Could not find matching filter for {data[self.filter_cols]}'
         else:
             z = (data[self.measure_col] - mean)/std
-            return f'{self.result_fields[0]}: Matched {flt}, Expecting {mean} +- {std}, Observed: {data[self.measure_col]}, Z: {z}'
+            return f'{self.result_fields[0]}:\n Matched {flt}\n Expecting {mean} +- {std}\n Observed: {data[self.measure_col]}\n Z: {z}'
 
     def process_single(self, row):
 

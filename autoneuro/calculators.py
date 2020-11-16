@@ -48,11 +48,11 @@ class AbstractCalculator(object):
     def explain(self, row):
 
         ins = [f'{f}:{row[f]}' for f in self.fields]
-        print('Input:', ', '.join(ins))
+        print('Input: \n', '\n '.join(ins))
 
         res = self.process_single(row, explain=True)
         outs = [f'{f}:{res[f]}' for f in self.inferred_cols]
-        print('Resulting in:', ', '.join(outs))
+        print('Resulting in: \n', '\n '.join(outs))
 
     def __add__(self, other):
 
