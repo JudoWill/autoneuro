@@ -16,6 +16,9 @@ entries:
       title: Operators
       url: operators.html
     - output: web,pdf
+      title: Motivating Example
+      url: clinical_explanation.html
+    - output: web,pdf
       title: Domains
       url: domains.html
     - output: web,pdf

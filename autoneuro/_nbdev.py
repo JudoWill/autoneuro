@@ -18,6 +18,7 @@ index = {"AbstractCalculator": "00_calculators.ipynb",
 
 modules = ["calculators.py",
            "operators.py",
+           "clinical_explanation.py",
            "domains.py"]
 
 doc_url = "https://judowill.github.io/autoneuro/"

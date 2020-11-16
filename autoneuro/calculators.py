@@ -48,7 +48,7 @@ class AbstractCalculator(object):
     def explain(self, row):
 
         ins = [f'{f}:{row[f]}' for f in self.fields]
-        print('Taking:', ', '.join(ins))
+        print('Input:', ', '.join(ins))
 
         res = self.process_single(row, explain=True)
         outs = [f'{f}:{res[f]}' for f in self.inferred_cols]
@@ -74,10 +74,15 @@ class AbstractCalculator(object):
         data = self.to_series(row)
         if self.operations:
             for operation in self.operations:
+                cfields = []
                 for field, val in operation(data):
                     data[field] = val
+                    cfields.append(field)
                 if explain:
-                    print(operation.explain(data))
+                    explanation = operation.explain(data)
+                    print(f'Calculating: {cfields}')
+                    print(explanation, '\n')
+
 
             #print(data)
         return pd.Series(data)
