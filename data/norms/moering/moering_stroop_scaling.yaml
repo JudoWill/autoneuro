@@ -1,0 +1,41 @@
+short_name: 'moering_stroop_scaling'
+reference: 'https://www.ncbi.nlm.nih.gov/pubmed/14670380'
+
+operations:
+  - type: categorical
+    in_field: gender
+    out_field: moering_gender
+    mapping:
+      male: 1
+      female: 2
+
+  - type: categorical
+    in_field: race
+    out_field: norman_race
+    mapping:
+      white: 0
+      AA: 1
+
+  - type: binned_scaling
+    measure_col: delay
+    bins:
+      - scaled: 14
+        min: 12
+      - scaled: 11
+        min: 11
+      - scaled: 9
+        min: 10
+      - scaled: 8
+        min: 9
+      - scaled: 7
+        min: 8
+      - scaled: 6
+        min: 7
+      - scaled: 5
+        min: 5
+      - scaled: 4
+        min: 4
+      - scaled: 3
+        min: 3
+      - scaled: 2
+        min: 0
