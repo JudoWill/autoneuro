@@ -9,7 +9,7 @@ At this point in development, it should not be used for diagnostic purposes.
 
 ## How to use
 
- - Clinical researchers (Mike, Vanessa) start with this `Motivating Example` instead.
+ - Clinical researchers (Mike, Vanessa) start with this `motivating_example` instead.
  - Neurological researchers (Kate) start with the `domains` documentation.
 
 Computational researchers continue reading.
