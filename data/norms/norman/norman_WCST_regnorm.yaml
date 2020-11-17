@@ -1,0 +1,107 @@
+short_name: 'norman_WCST'
+reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
+
+operations:
+  - type: categorical
+    in_field: gender
+    out_field: norman_gender
+    mapping:
+      male: 0
+      female: 1
+
+  - type: categorical
+    in_field: race
+    out_field: norman_race
+    mapping:
+      white: 0
+      AA: 1
+
+  - type: binned_scaling
+    measure_col: wcst_persev
+    bins:
+      - scaled: 18
+        min: 0
+      - scaled: 14
+        min: 4
+      - scaled: 12
+        min: 5
+      - scaled: 11
+        min: 6
+      - scaled: 10
+        min: 7
+      - scaled: 9
+        min: 8
+      - scaled: 8
+        min: 9
+      - scaled: 7
+        min: 11
+      - scaled: 6
+        min: 14
+      - scaled: 5
+        min: 16
+      - scaled: 4
+        min: 19
+      - scaled: 3
+        min: 26
+      - scaled: 2
+        min: 42
+
+  - type: binned_scaling
+    measure_col: wcst_errors
+    bins:
+      - scaled: 17
+        min: 0
+      - scaled: 16
+        min: 7
+      - scaled: 15
+        min: 8
+      - scaled: 13
+        min: 9
+      - scaled: 12
+        min: 11
+      - scaled: 11
+        min: 12
+      - scaled: 10
+        min: 13
+      - scaled: 9
+        min: 16
+      - scaled: 8
+        min: 20
+      - scaled: 7
+        min: 23
+      - scaled: 6
+        min: 29
+      - scaled: 5
+        min: 33
+      - scaled: 4
+        min: 36
+      - scaled: 3
+        min: 40
+      - scaled: 2
+        min: 49
+
+
+  - type: equation_filter
+    fields: ['norman_race', 'age', 'education', 'wcst_persev_scaled', 'norman_gender']
+    out_field: 'norman_wcst_persev'
+    result_type: 'standard_score'
+    equations:
+      - filter: '(norman_race == 0 ) & ((age >= 18) & (age <= 66))'
+        norm: "((wcst_persev_scaled - (0.2357*(education-14.13) + (-0.0941)*(age-37.37) + 0.0341*norman_gender + 10.33)+0.0012)/2.5506)*10 + 50"
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
+        norm: "((wcst_persev_scaled - (0.3599*(education-13.97) + (-0.0776)*(age-40.7) + (-0.1093)*norman_gender + 8.5524)-(0.0006))/3.0124)*10 + 50"
+
+
+  - type: equation_filter
+    fields: ['norman_race', 'age','education', 'wcst_errors_scaled', 'norman_gender']
+    out_field: 'norman_wcst_errors'
+    result_type: 'standard_score'
+    equations:
+      - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'
+        norm: "((wcst_errors_scaled - (0.3187*(education - 14.13) + (-0.01)*(age-37.37) + 0.1608*norman_gender + 10.4049)-(-0.0017))/2.674)*10 + 50"
+        result: 'standard_score'
+
+      - filter: '(norman_race == 1) & ((age >= 18) & (age <= 66))'
+        norm: "((wcst_errors_scaled - (0.3321*(education-13.97)+(-0.0838)*(age-40.7)+0.3215*norman_gender+8.1621)-(-0.0006))/2.7911)*10+50"
+        result: 'standard_score'
+
