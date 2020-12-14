@@ -146,10 +146,14 @@ class ExecutiveFunctionDomain(AbstractDomain):
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
-        norman_regression_definition = os.path.join(root_data, 'norms/norman/norman_stroop_regnorm.yaml')
-        reg_calc = TestCalculator.from_config(yaml.full_load(open(norman_regression_definition)))
+        norman_stroop = os.path.join(root_data, 'norms/norman/norman_stroop_regnorm.yaml')
+        stroop_reg_calc = TestCalculator.from_config(yaml.full_load(open(norman_stroop)))
 
-        full_exec_calc = reg_calc
+        norman_stroop = os.path.join(root_data, 'norms/norman/norman_stroop_regnorm.yaml')
+        stroop_reg_calc = TestCalculator.from_config(yaml.full_load(open(norman_stroop)))
+
+
+        full_exec_calc = stroop_reg_calc
         final_fields = ['norman_stroop_color', 'norman_stroop_word', 'norman_stroop_color_word']
 
         return ExecutiveFunctionDomain(full_exec_calc, final_fields)

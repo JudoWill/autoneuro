@@ -1,0 +1,101 @@
+Name: 'Stroop ColorWord'
+Group: 'Moering'
+short_name: 'Moering_ColorWord'
+Reference: 'https://www.ncbi.nlm.nih.gov/pubmed/14670380'
+Population_Description: 'Elderly AA patients 60-71'
+Population_filter: '((Age >= 60) & (Age <= 71)) & (RaceCat == "AA")'  
+num_pats: 111 # Males + Females grouped together
+filter_cols:
+  - 'RaceCat'
+  - 'Age'
+  - 'Education'
+  - 'Sex'
+scale_column: 'StroopColorWord'
+
+adjust_filters:
+  - filter: '(Education < 12) & (Sex == 1)' #males
+    value: 1
+  - filter: '(Education == 12) & (Sex == 1)' #males
+    value: 0
+  - filter: '(Education > 12) & (Sex == 1)' #males
+    value: -6
+    
+  - filter: '(Education < 12) & (Sex == 2)' #Females
+    value: 1
+  - filter: '(Education == 12) & (Sex == 2)' #Females
+    value: -3
+  - filter: '(Education > 12) & (Sex == 2)' #Females
+    value: -10
+
+
+percentiles: 
+  - value: 46
+    percentile: 99
+  - value: 45
+    percentile: 98
+  - value: 44
+    percentile: 98
+  - value: 43
+    percentile: 98
+  - value: 42
+    percentile: 98
+  - value: 41
+    percentile: 98
+  - value: 40
+    percentile: 97
+  - value: 39
+    percentile: 97
+  - value: 38
+    percentile: 97
+  - value: 37
+    percentile: 96
+  - value: 36
+    percentile: 96
+  - value: 35
+    percentile: 95
+  - value: 34
+    percentile: 94
+  - value: 33
+    percentile: 93
+  - value: 32
+    percentile: 92
+  - value: 31
+    percentile: 91
+  - value: 30
+    percentile: 89
+  - value: 29
+    percentile: 87
+  - value: 28
+    percentile: 84
+  - value: 27
+    percentile: 80
+  - value: 26
+    percentile: 75
+  - value: 25
+    percentile: 68
+  - value: 24
+    percentile: 60
+  - value: 23
+    percentile: 53
+  - value: 22
+    percentile: 41
+  - value: 21
+    percentile: 40
+  - value: 20
+    percentile: 39
+  - value: 19
+    percentile: 28
+  - value: 18
+    percentile: 19
+  - value: 17
+    percentile: 12
+  - value: 16
+    percentile: 8
+  - value: 15
+    percentile: 5
+  - value: 14
+    percentile: 2
+  - value: 13
+    percentile: 1
+  - value: 12
+    percentile: 1

@@ -237,13 +237,33 @@ We can load this in from the <code>yaml</code> file easily.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Taking: delay:8, false_pos:2, hits:6, trial1:5, trial2:6, trial3:7
-Used Equation: trial1+trial2+trial3 = 18 = immediate
-Aggregation: max [trial2, trial3]  = 7
-Used Equation: delay/retention_denom = 1.1428571428571428 = retention
-Clipped retention to [0, 1]
-Used Equation: hits-false_pos = 4.0 = recognition
-Resulting in: immediate:18.0, recognition:4.0, retention:1.0, retention_denom:7.0
+<pre>Input: 
+ delay:8
+ false_pos:2
+ hits:6
+ trial1:5
+ trial2:6
+ trial3:7
+Calculating: [&#39;immediate&#39;]
+Used Equation: trial1+trial2+trial3 = 18 = immediate 
+
+Calculating: [&#39;retention_denom&#39;]
+Aggregation: max [trial2, trial3]  = 7 
+
+Calculating: [&#39;retention&#39;]
+Used Equation: delay/retention_denom = 1.1428571428571428 = retention 
+
+Calculating: [&#39;retention&#39;]
+Clipped retention to [0, 1] 
+
+Calculating: [&#39;recognition&#39;]
+Used Equation: hits-false_pos = 4.0 = recognition 
+
+Resulting in: 
+ immediate:18.0
+ recognition:4.0
+ retention:1.0
+ retention_denom:7.0
 </pre>
 </div>
 </div>
@@ -411,7 +431,7 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_neuro</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data/neuro_data.xlsx&#39;</span><span class="p">,</span>
-                          <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;na&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;nd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;VisitDate&#39;</span><span class="p">,</span> <span class="s1">&#39;PatientID&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+                          <span class="n">na_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;na&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;nd&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;PatientID&#39;</span><span class="p">,</span> <span class="s1">&#39;Visit&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
 <span class="n">all_neuro</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;Race&#39;</span><span class="p">:</span> <span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;AA&#39;</span><span class="p">,</span>
                             <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
                             <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;asian&#39;</span><span class="p">},</span>
@@ -450,7 +470,7 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
     <tr style="text-align: right;">
       <th></th>
       <th></th>
-      <th>Visit</th>
+      <th>VisitDate</th>
       <th>Age</th>
       <th>Sex</th>
       <th>Race</th>
@@ -473,8 +493,8 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
       <th>Effort</th>
     </tr>
     <tr>
-      <th>VisitDate</th>
       <th>PatientID</th>
+      <th>Visit</th>
       <th></th>
       <th></th>
       <th></th>
@@ -500,91 +520,42 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
   </thead>
   <tbody>
     <tr>
-      <th rowspan="3" valign="top">2013-09-24</th>
-      <th>A0091</th>
-      <td>1.0</td>
-      <td>36</td>
+      <th rowspan="2" valign="top">1</th>
+      <th>1</th>
+      <td>2014-11-10</td>
+      <td>59</td>
       <td>male</td>
       <td>AA</td>
       <td>NaN</td>
-      <td>16</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>27.0</td>
-      <td>6.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>A0107</th>
-      <td>1.0</td>
-      <td>49</td>
-      <td>female</td>
-      <td>AA</td>
-      <td>NaN</td>
-      <td>12</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>27.0</td>
-      <td>3.0</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>A0138</th>
-      <td>1.0</td>
-      <td>53</td>
-      <td>female</td>
-      <td>AA</td>
-      <td>NaN</td>
-      <td>11</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>2013-10-03</th>
-      <th>A0165</th>
-      <td>1.0</td>
-      <td>62</td>
-      <td>male</td>
-      <td>AA</td>
-      <td>NaN</td>
-      <td>12</td>
+      <td>10</td>
       <td>3.0</td>
       <td>0.0</td>
       <td>29.0</td>
+      <td>6.0</td>
+      <td>...</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>720.0</td>
+      <td>0.0</td>
+      <td>720.0</td>
+      <td>720.0</td>
+      <td>720.0</td>
       <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-01-09</td>
+      <td>62</td>
+      <td>male</td>
+      <td>AA</td>
+      <td>NaN</td>
+      <td>11</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -598,18 +569,42 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
       <td>NaN</td>
     </tr>
     <tr>
-      <th>2013-10-08</th>
-      <th>A0127</th>
-      <td>1.0</td>
+      <th rowspan="2" valign="top">2</th>
+      <th>1</th>
+      <td>2013-10-22</td>
       <td>62</td>
-      <td>male</td>
+      <td>female</td>
       <td>AA</td>
       <td>NaN</td>
-      <td>16</td>
+      <td>9</td>
       <td>3.0</td>
       <td>0.0</td>
-      <td>28.0</td>
+      <td>19.0</td>
       <td>2.0</td>
+      <td>...</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>2.0</td>
+      <td>0.0</td>
+      <td>730.0</td>
+      <td>0.0</td>
+      <td>1570.0</td>
+      <td>785.0</td>
+      <td>785.0</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2018-03-13</td>
+      <td>67</td>
+      <td>female</td>
+      <td>AA</td>
+      <td>NaN</td>
+      <td>10</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>...</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -621,6 +616,31 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
       <td>NaN</td>
       <td>NaN</td>
       <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1</th>
+      <td>2014-11-10</td>
+      <td>65</td>
+      <td>male</td>
+      <td>AA</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>3.0</td>
+      <td>0.0</td>
+      <td>25.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>720.0</td>
+      <td>0.0</td>
+      <td>720.0</td>
+      <td>720.0</td>
+      <td>720.0</td>
+      <td>5.0</td>
     </tr>
   </tbody>
 </table>
@@ -694,8 +714,8 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
       <th>recognition</th>
     </tr>
     <tr>
-      <th>VisitDate</th>
       <th>PatientID</th>
+      <th>Visit</th>
       <th></th>
       <th></th>
       <th></th>
@@ -710,73 +730,74 @@ Easy, the <code>process_dataframe</code> allows for a mapping.</p>
   </thead>
   <tbody>
     <tr>
-      <th>2013-10-03</th>
-      <th>A0165</th>
-      <td>6.0</td>
+      <th>1</th>
+      <th>1</th>
       <td>0.0</td>
-      <td>5.0</td>
+      <td>3.0</td>
       <td>6.0</td>
-      <td>6.0</td>
-      <td>7.0</td>
-      <td>19.0</td>
-      <td>7.0</td>
-      <td>0.857143</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">2013-10-08</th>
-      <th>A0127</th>
-      <td>6.0</td>
-      <td>0.0</td>
-      <td>6.0</td>
-      <td>5.0</td>
-      <td>6.0</td>
-      <td>9.0</td>
-      <td>20.0</td>
-      <td>9.0</td>
-      <td>0.666667</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>A0164</th>
-      <td>7.0</td>
       <td>2.0</td>
-      <td>6.0</td>
       <td>5.0</td>
-      <td>6.0</td>
-      <td>7.0</td>
-      <td>18.0</td>
-      <td>7.0</td>
-      <td>1.000000</td>
-      <td>4.0</td>
+      <td>5.0</td>
+      <td>12.0</td>
+      <td>5.0</td>
+      <td>0.00</td>
+      <td>3.0</td>
     </tr>
     <tr>
-      <th>2013-10-10</th>
-      <th>A0421</th>
-      <td>7.0</td>
+      <th>2</th>
+      <th>1</th>
       <td>0.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>8.0</td>
-      <td>9.0</td>
-      <td>23.0</td>
-      <td>9.0</td>
-      <td>0.777778</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>2013-10-15</th>
-      <th>A0067</th>
-      <td>4.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
       <td>2.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1</th>
       <td>4.0</td>
+      <td>0.0</td>
       <td>4.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
       <td>10.0</td>
       <td>4.0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>1</th>
+      <td>7.0</td>
+      <td>0.0</td>
       <td>3.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>13.0</td>
+      <td>5.0</td>
+      <td>1.00</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>1</th>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>4.0</td>
+      <td>0.75</td>
+      <td>4.0</td>
     </tr>
   </tbody>
 </table>
@@ -830,12 +851,45 @@ Since the BVMT test is common, but there are many normalization schemes, we can 
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Taking: age:22, delay:11, immediate:30, recognition:2, retention:0.91
-heaton_immediate: Matched (20 &lt;= age) &amp; (age &lt;= 23), Expecting 28.44 +- 4.38, Observed: 30.0
-heaton_retention: Matched (20 &lt;= age) &amp; (age &lt;= 23), Expecting 0.9493 +- 0.0726, Observed: 0.91
-heaton_delay: Matched (20 &lt;= age) &amp; (age &lt;= 23), Expecting 10.68 +- 1.41, Observed: 11.0
-heaton_recognition: Matched (20 &lt;= age) &amp; (age &lt;= 23), Expecting 5.92 +- 0.26, Observed: 2.0
-Resulting in: heaton_delay:0.2269503546099293, heaton_immediate:0.35616438356164354, heaton_recognition:-15.076923076923077, heaton_retention:-0.5413223140495869
+<pre>Input: 
+ age:22
+ delay:11
+ immediate:30
+ recognition:2
+ retention:0.91
+Calculating: [&#39;heaton_immediate&#39;]
+heaton_immediate:
+ Matched (20 &lt;= age) &amp; (age &lt;= 23)
+ Expecting 28.44 +- 4.38
+ Observed: 30.0
+ Z: 0.35616438356164354 
+
+Calculating: [&#39;heaton_retention&#39;]
+heaton_retention:
+ Matched (20 &lt;= age) &amp; (age &lt;= 23)
+ Expecting 0.9493 +- 0.0726
+ Observed: 0.91
+ Z: -0.5413223140495869 
+
+Calculating: [&#39;heaton_delay&#39;]
+heaton_delay:
+ Matched (20 &lt;= age) &amp; (age &lt;= 23)
+ Expecting 10.68 +- 1.41
+ Observed: 11.0
+ Z: 0.2269503546099293 
+
+Calculating: [&#39;heaton_recognition&#39;]
+heaton_recognition:
+ Matched (20 &lt;= age) &amp; (age &lt;= 23)
+ Expecting 5.92 +- 0.26
+ Observed: 2.0
+ Z: -15.076923076923077 
+
+Resulting in: 
+ heaton_delay:0.2269503546099293
+ heaton_immediate:0.35616438356164354
+ heaton_recognition:-15.076923076923077
+ heaton_retention:-0.5413223140495869
 </pre>
 </div>
 </div>
@@ -918,8 +972,8 @@ Resulting in: heaton_delay:0.2269503546099293, heaton_immediate:0.35616438356164
       <th>heaton_recognition</th>
     </tr>
     <tr>
-      <th>VisitDate</th>
       <th>PatientID</th>
+      <th>Visit</th>
       <th></th>
       <th></th>
       <th></th>
@@ -939,98 +993,99 @@ Resulting in: heaton_delay:0.2269503546099293, heaton_immediate:0.35616438356164
   </thead>
   <tbody>
     <tr>
-      <th>2013-10-03</th>
-      <th>A0165</th>
-      <td>62.0</td>
-      <td>6.0</td>
+      <th>1</th>
+      <th>1</th>
+      <td>59.0</td>
       <td>0.0</td>
-      <td>5.0</td>
+      <td>3.0</td>
       <td>6.0</td>
-      <td>6.0</td>
-      <td>7.0</td>
-      <td>19.0</td>
-      <td>7.0</td>
-      <td>0.857143</td>
-      <td>5.0</td>
-      <td>-0.679035</td>
-      <td>-0.917898</td>
-      <td>-1.215962</td>
-      <td>-1.954545</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">2013-10-08</th>
-      <th>A0127</th>
-      <td>62.0</td>
-      <td>6.0</td>
-      <td>0.0</td>
-      <td>6.0</td>
-      <td>5.0</td>
-      <td>6.0</td>
-      <td>9.0</td>
-      <td>20.0</td>
-      <td>9.0</td>
-      <td>0.666667</td>
-      <td>6.0</td>
-      <td>-0.493506</td>
-      <td>-3.107280</td>
-      <td>-1.215962</td>
-      <td>0.318182</td>
-    </tr>
-    <tr>
-      <th>A0164</th>
-      <td>56.0</td>
-      <td>7.0</td>
       <td>2.0</td>
-      <td>6.0</td>
       <td>5.0</td>
-      <td>6.0</td>
-      <td>7.0</td>
-      <td>18.0</td>
-      <td>7.0</td>
-      <td>1.000000</td>
-      <td>4.0</td>
-      <td>-0.998106</td>
-      <td>0.711744</td>
-      <td>-0.882927</td>
-      <td>-2.948276</td>
+      <td>5.0</td>
+      <td>12.0</td>
+      <td>5.0</td>
+      <td>0.00</td>
+      <td>3.0</td>
+      <td>-1.977737</td>
+      <td>-10.770115</td>
+      <td>-4.032864</td>
+      <td>-6.500000</td>
     </tr>
     <tr>
-      <th>2013-10-10</th>
-      <th>A0421</th>
-      <td>63.0</td>
-      <td>7.0</td>
+      <th>2</th>
+      <th>1</th>
+      <td>62.0</td>
       <td>0.0</td>
-      <td>6.0</td>
-      <td>6.0</td>
-      <td>8.0</td>
-      <td>9.0</td>
-      <td>23.0</td>
-      <td>9.0</td>
-      <td>0.777778</td>
-      <td>6.0</td>
-      <td>0.172727</td>
-      <td>-1.010536</td>
-      <td>-0.622727</td>
-      <td>0.166667</td>
-    </tr>
-    <tr>
-      <th>2013-10-15</th>
-      <th>A0067</th>
-      <td>47.0</td>
-      <td>4.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
       <td>1.0</td>
-      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0.00</td>
       <td>2.0</td>
+      <td>-4.018553</td>
+      <td>-10.770115</td>
+      <td>-4.032864</td>
+      <td>-8.772727</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1</th>
+      <td>65.0</td>
       <td>4.0</td>
+      <td>0.0</td>
       <td>4.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
       <td>10.0</td>
       <td>4.0</td>
-      <td>1.000000</td>
+      <td>1.00</td>
+      <td>4.0</td>
+      <td>-2.190909</td>
+      <td>0.905172</td>
+      <td>-1.986364</td>
+      <td>-4.000000</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>1</th>
+      <td>54.0</td>
+      <td>7.0</td>
+      <td>0.0</td>
       <td>3.0</td>
-      <td>-2.856016</td>
-      <td>0.776084</td>
-      <td>-2.763158</td>
-      <td>-8.142857</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>13.0</td>
+      <td>5.0</td>
+      <td>1.00</td>
+      <td>3.0</td>
+      <td>-1.945076</td>
+      <td>0.711744</td>
+      <td>-0.882927</td>
+      <td>-4.672414</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>1</th>
+      <td>58.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>4.0</td>
+      <td>0.75</td>
+      <td>4.0</td>
+      <td>-2.702652</td>
+      <td>-2.253855</td>
+      <td>-2.834146</td>
+      <td>-2.948276</td>
     </tr>
   </tbody>
 </table>
@@ -1079,17 +1134,51 @@ Resulting in: heaton_delay:0.2269503546099293, heaton_immediate:0.35616438356164
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Taking: delay:8, false_pos:2, gender:male, hits:6, race:AA, trial1:5, trial2:6, trial3:7
-Used Equation: trial1+trial2+trial3 = 18 = immediate
-Aggregation: max [trial2, trial3]  = 7
-Used Equation: delay/retention_denom = 1.1428571428571428 = retention
-Clipped retention to [0, 1]
-Used Equation: hits-false_pos = 4 = recognition
-gender:male -&gt; norman_gender:0
-race:AA -&gt; norman_race:1
-delay matched 8, scaled to 7
-immediate matched 16, scaled to 6
-Resulting in: delay_scaled:7, immediate:18, immediate_scaled:6, norman_gender:0, norman_race:1, recognition:4, retention:1.0, retention_denom:7
+<pre>Input: 
+ delay:8
+ false_pos:2
+ gender:male
+ hits:6
+ race:AA
+ trial1:5
+ trial2:6
+ trial3:7
+Calculating: [&#39;immediate&#39;]
+Used Equation: trial1+trial2+trial3 = 18 = immediate 
+
+Calculating: [&#39;retention_denom&#39;]
+Aggregation: max [trial2, trial3]  = 7 
+
+Calculating: [&#39;retention&#39;]
+Used Equation: delay/retention_denom = 1.1428571428571428 = retention 
+
+Calculating: [&#39;retention&#39;]
+Clipped retention to [0, 1] 
+
+Calculating: [&#39;recognition&#39;]
+Used Equation: hits-false_pos = 4 = recognition 
+
+Calculating: [&#39;norman_gender&#39;]
+gender:male -&gt; norman_gender:0 
+
+Calculating: [&#39;norman_race&#39;]
+race:AA -&gt; norman_race:1 
+
+Calculating: [&#39;delay_scaled&#39;]
+delay matched 8, scaled to 7 
+
+Calculating: [&#39;immediate_scaled&#39;]
+immediate matched 16, scaled to 6 
+
+Resulting in: 
+ delay_scaled:7
+ immediate:18
+ immediate_scaled:6
+ norman_gender:0
+ norman_race:1
+ recognition:4
+ retention:1.0
+ retention_denom:7
 </pre>
 </div>
 </div>
@@ -1128,19 +1217,73 @@ Resulting in: delay_scaled:7, immediate:18, immediate_scaled:6, norman_gender:0,
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Taking: age:32, delay:8, education:6, false_pos:2, gender:male, hits:6, race:AA, trial1:5, trial2:6, trial3:7
-Used Equation: trial1+trial2+trial3 = 18 = immediate
-Aggregation: max [trial2, trial3]  = 7
-Used Equation: delay/retention_denom = 1.1428571428571428 = retention
-Clipped retention to [0, 1]
-Used Equation: hits-false_pos = 4 = recognition
-gender:male -&gt; norman_gender:0
-race:AA -&gt; norman_race:1
-delay matched 8, scaled to 7
-immediate matched 16, scaled to 6
-Matched (norman_race == 1) &amp; ((age &gt;= 18) &amp; (age &lt;= 66)), applied ((immediate_scaled-(0.2834*(education-13.86)+(-0.1125)*(age-40.63)+1.0394*norman_gender + 8.0679))/2.5701)*10 + 50 = -0.31564958561923645
-Matched (norman_race == 1) &amp; ((age &gt;= 18) &amp; (age &lt;= 66)), applied ((delay_scaled-(0.2267*(education-13.86) + (-0.1262)*(age-40.63) + 0.8593*norman_gender + 7.691))/2.5197)*10 + 50 = 0.0006969083621065408
-Resulting in: delay_scaled:7, immediate:18, immediate_scaled:6, norman_delay:0.0006969083621065408, norman_gender:0, norman_immediate:-0.31564958561923645, norman_race:1, recognition:4, retention:1.0, retention_denom:7
+<pre>Input: 
+ age:32
+ delay:8
+ education:6
+ false_pos:2
+ gender:male
+ hits:6
+ race:AA
+ trial1:5
+ trial2:6
+ trial3:7
+Calculating: [&#39;immediate&#39;]
+Used Equation: trial1+trial2+trial3 = 18 = immediate 
+
+Calculating: [&#39;retention_denom&#39;]
+Aggregation: max [trial2, trial3]  = 7 
+
+Calculating: [&#39;retention&#39;]
+Used Equation: delay/retention_denom = 1.1428571428571428 = retention 
+
+Calculating: [&#39;retention&#39;]
+Clipped retention to [0, 1] 
+
+Calculating: [&#39;recognition&#39;]
+Used Equation: hits-false_pos = 4 = recognition 
+
+Calculating: [&#39;norman_gender&#39;]
+gender:male -&gt; norman_gender:0 
+
+Calculating: [&#39;norman_race&#39;]
+race:AA -&gt; norman_race:1 
+
+Calculating: [&#39;delay_scaled&#39;]
+delay matched 8, scaled to 7 
+
+Calculating: [&#39;immediate_scaled&#39;]
+immediate matched 16, scaled to 6 
+
+Calculating: [&#39;norman_gender&#39;]
+gender:male -&gt; norman_gender:0 
+
+Calculating: [&#39;norman_race&#39;]
+race:AA -&gt; norman_race:1 
+
+Calculating: [&#39;delay_scaled&#39;]
+delay matched 8, scaled to 7 
+
+Calculating: [&#39;immediate_scaled&#39;]
+immediate matched 16, scaled to 6 
+
+Calculating: [&#39;norman_immediate&#39;]
+Matched (norman_race == 1) &amp; ((age &gt;= 18) &amp; (age &lt;= 66)), applied ((immediate_scaled-(0.2834*(education-13.86)+(-0.1125)*(age-40.63)+1.0394*norman_gender + 8.0679))/2.5701)*10 + 50 = -0.31564958561923645 
+
+Calculating: [&#39;norman_delay&#39;]
+Matched (norman_race == 1) &amp; ((age &gt;= 18) &amp; (age &lt;= 66)), applied ((delay_scaled-(0.2267*(education-13.86) + (-0.1262)*(age-40.63) + 0.8593*norman_gender + 7.691))/2.5197)*10 + 50 = 0.0006969083621065408 
+
+Resulting in: 
+ delay_scaled:7
+ immediate:18
+ immediate_scaled:6
+ norman_delay:0.0006969083621065408
+ norman_gender:0
+ norman_immediate:-0.31564958561923645
+ norman_race:1
+ recognition:4
+ retention:1.0
+ retention_denom:7
 </pre>
 </div>
 </div>
@@ -1222,8 +1365,8 @@ Resulting in: delay_scaled:7, immediate:18, immediate_scaled:6, norman_delay:0.0
       <th>norman_delay</th>
     </tr>
     <tr>
-      <th>VisitDate</th>
       <th>PatientID</th>
+      <th>Visit</th>
       <th></th>
       <th></th>
       <th></th>
@@ -1234,53 +1377,54 @@ Resulting in: delay_scaled:7, immediate:18, immediate_scaled:6, norman_delay:0.0
   </thead>
   <tbody>
     <tr>
-      <th>2013-10-03</th>
-      <th>A0165</th>
-      <td>-0.679035</td>
-      <td>-0.917898</td>
-      <td>-1.215962</td>
-      <td>-1.954545</td>
-      <td>0.725010</td>
-      <td>0.169685</td>
+      <th>1</th>
+      <th>1</th>
+      <td>-1.977737</td>
+      <td>-10.770115</td>
+      <td>-4.032864</td>
+      <td>-6.500000</td>
+      <td>-0.353041</td>
+      <td>-0.991247</td>
     </tr>
     <tr>
-      <th rowspan="2" valign="top">2013-10-08</th>
-      <th>A0127</th>
-      <td>-0.493506</td>
-      <td>-3.107280</td>
-      <td>-1.215962</td>
-      <td>0.318182</td>
-      <td>0.283938</td>
-      <td>-0.190199</td>
+      <th>2</th>
+      <th>1</th>
+      <td>-4.018553</td>
+      <td>-10.770115</td>
+      <td>-4.032864</td>
+      <td>-8.772727</td>
+      <td>-0.904965</td>
+      <td>-1.092052</td>
     </tr>
     <tr>
-      <th>A0164</th>
-      <td>-0.998106</td>
+      <th>4</th>
+      <th>1</th>
+      <td>-2.190909</td>
+      <td>0.905172</td>
+      <td>-1.986364</td>
+      <td>-4.000000</td>
+      <td>0.019863</td>
+      <td>0.192982</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>1</th>
+      <td>-1.945076</td>
       <td>0.711744</td>
       <td>-0.882927</td>
+      <td>-4.672414</td>
+      <td>-0.351368</td>
+      <td>0.525759</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <th>1</th>
+      <td>-2.702652</td>
+      <td>-2.253855</td>
+      <td>-2.834146</td>
       <td>-2.948276</td>
-      <td>-0.147251</td>
-      <td>0.086104</td>
-    </tr>
-    <tr>
-      <th>2013-10-10</th>
-      <th>A0421</th>
-      <td>0.172727</td>
-      <td>-1.010536</td>
-      <td>-0.622727</td>
-      <td>0.166667</td>
-      <td>1.157873</td>
-      <td>0.616643</td>
-    </tr>
-    <tr>
-      <th>2013-10-15</th>
-      <th>A0067</th>
-      <td>-2.856016</td>
-      <td>0.776084</td>
-      <td>-2.763158</td>
-      <td>-8.142857</td>
-      <td>-0.878313</td>
-      <td>-0.798525</td>
+      <td>-1.006440</td>
+      <td>-0.824401</td>
     </tr>
   </tbody>
 </table>

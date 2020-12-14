@@ -1,0 +1,175 @@
+Name: 'Stroop Word'
+Group: 'Moering'
+short_name: 'Moering_Word'
+Reference: 'https://www.ncbi.nlm.nih.gov/pubmed/14670380'
+Population_Description: 'Elderly AA patients 72-84'
+Population_filter: '((Age >= 72) & (Age <= 84)) & (RaceCat == "AA")'  
+num_pats: 125 # Males + Females grouped together
+filter_cols:
+  - 'RaceCat'
+  - 'Age'
+  - 'Education'
+  - 'Sex'
+scale_column: 'StroopWord'
+
+adjust_filters:
+  - filter: '(Education < 12) & (Sex == 1)' #males
+    value: 9
+  - filter: '(Education == 12) & (Sex == 1)' #males
+    value: -2
+  - filter: '(Education > 12) & (Sex == 1)' #males
+    value: -17
+    
+  - filter: '(Education < 12) & (Sex == 2)' #Females
+    value: -3
+  - filter: '(Education == 12) & (Sex == 2)' #Females
+    value: -12
+  - filter: '(Education > 12) & (Sex == 2)' #Females
+    value: -26
+
+
+percentiles: 
+  - value: 99
+    percentile: 99
+  - value: 98
+    percentile: 98
+  - value: 97
+    percentile: 98
+  - value: 96
+    percentile: 98
+  - value: 95
+    percentile: 97
+  - value: 94
+    percentile: 97
+  - value: 93
+    percentile: 96
+  - value: 92
+    percentile: 96
+  - value: 91
+    percentile: 95
+  - value: 90
+    percentile: 94
+  - value: 89
+    percentile: 93
+  - value: 88
+    percentile: 92
+  - value: 87
+    percentile: 90
+  - value: 86
+    percentile: 89
+  - value: 85
+    percentile: 88
+  - value: 84
+    percentile: 87
+  - value: 83
+    percentile: 86
+  - value: 82
+    percentile: 84
+  - value: 81
+    percentile: 83
+  - value: 80
+    percentile: 82
+  - value: 79
+    percentile: 81
+  - value: 78
+    percentile: 81
+  - value: 77
+    percentile: 78
+  - value: 76
+    percentile: 78
+  - value: 75
+    percentile: 74
+  - value: 74
+    percentile: 71
+  - value: 73
+    percentile: 68
+  - value: 72
+    percentile: 66
+  - value: 71
+    percentile: 64
+  - value: 70
+    percentile: 60
+  - value: 69
+    percentile: 58
+  - value: 68
+    percentile: 55
+  - value: 67
+    percentile: 53
+  - value: 66
+    percentile: 47
+  - value: 65
+    percentile: 45
+  - value: 64
+    percentile: 43
+  - value: 63
+    percentile: 42
+  - value: 62
+    percentile: 40
+  - value: 61
+    percentile: 39
+  - value: 60
+    percentile: 38
+  - value: 59
+    percentile: 37
+  - value: 58
+    percentile: 34
+  - value: 57
+    percentile: 32
+  - value: 56
+    percentile: 30
+  - value: 55
+    percentile: 26
+  - value: 54
+    percentile: 25
+  - value: 53
+    percentile: 24
+  - value: 52
+    percentile: 23
+  - value: 51
+    percentile: 22
+  - value: 50
+    percentile: 21
+  - value: 49
+    percentile: 19
+  - value: 48
+    percentile: 18
+  - value: 47
+    percentile: 18
+  - value: 46
+    percentile: 18
+  - value: 45
+    percentile: 14
+  - value: 44
+    percentile: 13
+  - value: 43
+    percentile: 13
+  - value: 42
+    percentile: 13
+  - value: 41
+    percentile: 12
+  - value: 40
+    percentile: 12
+  - value: 39
+    percentile: 12
+  - value: 38
+    percentile: 12
+  - value: 37
+    percentile: 10
+  - value: 36
+    percentile: 9
+  - value: 35
+    percentile: 8
+  - value: 34
+    percentile: 8
+  - value: 33
+    percentile: 5
+  - value: 32
+    percentile: 3
+  - value: 31
+    percentile: 2
+  - value: 30
+    percentile: 2
+  - value: 29
+    percentile: 1
+  - value: 28
+    percentile: 1

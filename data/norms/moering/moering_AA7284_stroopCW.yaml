@@ -1,0 +1,89 @@
+Name: 'Stroop ColorWord'
+Group: 'Moering'
+short_name: 'Moering_ColorWord'
+Reference: 'https://www.ncbi.nlm.nih.gov/pubmed/14670380'
+Population_Description: 'Elderly AA patients 72-84'
+Population_filter: '((Age >= 72) & (Age <= 84)) & (RaceCat == "AA")'  
+num_pats: 125 # Males + Females grouped together
+filter_cols:
+  - 'RaceCat'
+  - 'Age'
+  - 'Education'
+  - 'Sex'
+scale_column: 'StroopColorWord'
+
+adjust_filters:
+  - filter: '(Education < 12) & (Sex == 1)' #males
+    value: 1
+  - filter: '(Education == 12) & (Sex == 1)' #males
+    value: 0
+  - filter: '(Education > 12) & (Sex == 1)' #males
+    value: -6
+    
+  - filter: '(Education < 12) & (Sex == 2)' #Females
+    value: 1
+  - filter: '(Education == 12) & (Sex == 2)' #Females
+    value: -3
+  - filter: '(Education > 12) & (Sex == 2)' #Females
+    value: -10
+
+
+percentiles: 
+  - value: 40
+    percentile: 99
+  - value: 39
+    percentile: 98
+  - value: 38
+    percentile: 98
+  - value: 37
+    percentile: 98
+  - value: 36
+    percentile: 97
+  - value: 35
+    percentile: 96
+  - value: 34
+    percentile: 96
+  - value: 33
+    percentile: 96
+  - value: 32
+    percentile: 95
+  - value: 31
+    percentile: 95
+  - value: 30
+    percentile: 94
+  - value: 29
+    percentile: 94
+  - value: 28
+    percentile: 91
+  - value: 27
+    percentile: 89
+  - value: 26
+    percentile: 85
+  - value: 25
+    percentile: 80
+  - value: 24
+    percentile: 76
+  - value: 23
+    percentile: 70
+  - value: 22
+    percentile: 58
+  - value: 21
+    percentile: 52
+  - value: 20
+    percentile: 50
+  - value: 19
+    percentile: 38
+  - value: 18
+    percentile: 23
+  - value: 17
+    percentile: 10
+  - value: 16
+    percentile: 5
+  - value: 15
+    percentile: 4
+  - value: 14
+    percentile: 2
+  - value: 13
+    percentile: 1
+  - value: 12
+    percentile: 1

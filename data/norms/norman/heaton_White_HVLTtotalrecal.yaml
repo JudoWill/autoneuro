@@ -1,0 +1,80 @@
+Name: 'Wisconson Card Sorting Total Errors'
+Group: 'Heaton'
+short_name: 'heaton_AA'
+Reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
+Population_Description: 'Normative data for Caucasians between 18-66'
+Population_filter: '(RaceCat == "White") & ((Age >= 18) & (Age <= 66))'  
+filter_cols:
+  - 'RaceCat'
+  - 'Age'
+scale_column: 'HVLTtotalrecal'
+tscore_cols:
+  - 'Education'
+  - 'Age'
+  - 'heaton_gender'
+tscore: "((scaled-(0.5225*(Education-14.11) + 1.0035*heaton_gender + 10.1738))/2.5927)*10 + 50"
+
+
+
+scores: 
+
+  - scaled: 17
+    Min: 36
+    Max: 36
+  - scaled: 15
+    Min: 35
+    Max: 35
+  - scaled: 14
+    Min: 34
+    Max: 34
+
+  - scaled: 13
+    Min: 33
+    Max: 33
+
+  - scaled: 12
+    Min: 31
+    Max: 32
+    
+  - scaled: 11
+    Min: 30
+    Max: 30
+  - scaled: 10
+    Min: 29
+    Max: 29
+
+
+  - scaled: 9
+    Min: 27
+    Max: 28
+    
+  - scaled: 8
+    Min: 26
+    Max: 26
+    
+  - scaled: 7
+    Min: 24
+    Max: 25
+    
+  - scaled: 6
+    Min: 22
+    Max: 23
+    
+  - scaled: 5
+    Min: 21
+    Max: 21
+    
+  - scaled: 4
+    Min: 20
+    Max: 20
+    
+  - scaled: 3
+    Min: 16
+    Max: 19
+    
+  - scaled: 2
+    Min: 0
+    Max: 15
+  
+  
+

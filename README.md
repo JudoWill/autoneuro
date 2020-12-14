@@ -81,13 +81,33 @@ DATA = {'trial1': 5, 'trial2': 6, 'trial3': 7,
 bvmt_calc.explain(DATA)
 ```
 
-    Taking: delay:8, false_pos:2, hits:6, trial1:5, trial2:6, trial3:7
-    Used Equation: trial1+trial2+trial3 = 18 = immediate
-    Aggregation: max [trial2, trial3]  = 7
-    Used Equation: delay/retention_denom = 1.1428571428571428 = retention
-    Clipped retention to [0, 1]
-    Used Equation: hits-false_pos = 4.0 = recognition
-    Resulting in: immediate:18.0, recognition:4.0, retention:1.0, retention_denom:7.0
+    Input: 
+     delay:8
+     false_pos:2
+     hits:6
+     trial1:5
+     trial2:6
+     trial3:7
+    Calculating: ['immediate']
+    Used Equation: trial1+trial2+trial3 = 18 = immediate 
+    
+    Calculating: ['retention_denom']
+    Aggregation: max [trial2, trial3]  = 7 
+    
+    Calculating: ['retention']
+    Used Equation: delay/retention_denom = 1.1428571428571428 = retention 
+    
+    Calculating: ['retention']
+    Clipped retention to [0, 1] 
+    
+    Calculating: ['recognition']
+    Used Equation: hits-false_pos = 4.0 = recognition 
+    
+    Resulting in: 
+     immediate:18.0
+     recognition:4.0
+     retention:1.0
+     retention_denom:7.0
 
 
 These can then be combined with calculators that define age based norms (`heaton`) or regression norms (`norman`).
@@ -115,27 +135,105 @@ DATA = {'trial1': 5, 'trial2': 6, 'trial3': 7,
 full_bvmt_calc.explain(DATA)
 ```
 
-    Taking: age:32, delay:8, education:12, false_pos:2, gender:male, hits:6, race:AA, trial1:5, trial2:6, trial3:7
-    Used Equation: trial1+trial2+trial3 = 18 = immediate
-    Aggregation: max [trial2, trial3]  = 7
-    Used Equation: delay/retention_denom = 1.1428571428571428 = retention
-    Clipped retention to [0, 1]
-    Used Equation: hits-false_pos = 4 = recognition
-    heaton_immediate: Matched (30 <= age) & (age <= 33), Expecting 26.92 +- 4.64, Observed: 18
-    heaton_retention: Matched (30 <= age) & (age <= 33), Expecting 0.962 +- 0.0474, Observed: 1.0
-    heaton_delay: Matched (30 <= age) & (age <= 33), Expecting 10.13 +- 1.6, Observed: 8
-    heaton_recognition: Matched (30 <= age) & (age <= 33), Expecting 5.97 +- 0.15, Observed: 4
-    gender:male -> norman_gender:0
-    race:AA -> norman_race:1
-    delay matched 8, scaled to 7
-    immediate matched 16, scaled to 6
-    gender:male -> norman_gender:0
-    race:AA -> norman_race:1
-    delay matched 8, scaled to 7
-    immediate matched 16, scaled to 6
-    Matched (norman_race == 1) & ((age >= 18) & (age <= 66)), applied ((immediate_scaled-(0.2834*(education-13.86)+(-0.1125)*(age-40.63)+1.0394*norman_gender + 8.0679))/2.5701)*10 + 50 = -0.977258083343061
-    Matched (norman_race == 1) & ((age >= 18) & (age <= 66)), applied ((delay_scaled-(0.2267*(education-13.86) + (-0.1262)*(age-40.63) + 0.8593*norman_gender + 7.691))/2.5197)*10 + 50 = -0.5391292614200104
-    Resulting in: delay_scaled:7, heaton_delay:-1.3312500000000005, heaton_immediate:-1.9224137931034488, heaton_recognition:-13.133333333333333, heaton_retention:0.8016877637130809, immediate:18, immediate_scaled:6, norman_delay:-0.5391292614200104, norman_gender:0, norman_immediate:-0.977258083343061, norman_race:1, recognition:4, retention:1.0, retention_denom:7
+    Input: 
+     age:32
+     delay:8
+     education:12
+     false_pos:2
+     gender:male
+     hits:6
+     race:AA
+     trial1:5
+     trial2:6
+     trial3:7
+    Calculating: ['immediate']
+    Used Equation: trial1+trial2+trial3 = 18 = immediate 
+    
+    Calculating: ['retention_denom']
+    Aggregation: max [trial2, trial3]  = 7 
+    
+    Calculating: ['retention']
+    Used Equation: delay/retention_denom = 1.1428571428571428 = retention 
+    
+    Calculating: ['retention']
+    Clipped retention to [0, 1] 
+    
+    Calculating: ['recognition']
+    Used Equation: hits-false_pos = 4 = recognition 
+    
+    Calculating: ['heaton_immediate']
+    heaton_immediate:
+     Matched (30 <= age) & (age <= 33)
+     Expecting 26.92 +- 4.64
+     Observed: 18
+     Z: -1.9224137931034488 
+    
+    Calculating: ['heaton_retention']
+    heaton_retention:
+     Matched (30 <= age) & (age <= 33)
+     Expecting 0.962 +- 0.0474
+     Observed: 1.0
+     Z: 0.8016877637130809 
+    
+    Calculating: ['heaton_delay']
+    heaton_delay:
+     Matched (30 <= age) & (age <= 33)
+     Expecting 10.13 +- 1.6
+     Observed: 8
+     Z: -1.3312500000000005 
+    
+    Calculating: ['heaton_recognition']
+    heaton_recognition:
+     Matched (30 <= age) & (age <= 33)
+     Expecting 5.97 +- 0.15
+     Observed: 4
+     Z: -13.133333333333333 
+    
+    Calculating: ['norman_gender']
+    gender:male -> norman_gender:0 
+    
+    Calculating: ['norman_race']
+    race:AA -> norman_race:1 
+    
+    Calculating: ['delay_scaled']
+    delay matched 8, scaled to 7 
+    
+    Calculating: ['immediate_scaled']
+    immediate matched 16, scaled to 6 
+    
+    Calculating: ['norman_gender']
+    gender:male -> norman_gender:0 
+    
+    Calculating: ['norman_race']
+    race:AA -> norman_race:1 
+    
+    Calculating: ['delay_scaled']
+    delay matched 8, scaled to 7 
+    
+    Calculating: ['immediate_scaled']
+    immediate matched 16, scaled to 6 
+    
+    Calculating: ['norman_immediate']
+    Matched (norman_race == 1) & ((age >= 18) & (age <= 66)), applied ((immediate_scaled-(0.2834*(education-13.86)+(-0.1125)*(age-40.63)+1.0394*norman_gender + 8.0679))/2.5701)*10 + 50 = -0.977258083343061 
+    
+    Calculating: ['norman_delay']
+    Matched (norman_race == 1) & ((age >= 18) & (age <= 66)), applied ((delay_scaled-(0.2267*(education-13.86) + (-0.1262)*(age-40.63) + 0.8593*norman_gender + 7.691))/2.5197)*10 + 50 = -0.5391292614200104 
+    
+    Resulting in: 
+     delay_scaled:7
+     heaton_delay:-1.3312500000000005
+     heaton_immediate:-1.9224137931034488
+     heaton_recognition:-13.133333333333333
+     heaton_retention:0.8016877637130809
+     immediate:18
+     immediate_scaled:6
+     norman_delay:-0.5391292614200104
+     norman_gender:0
+     norman_immediate:-0.977258083343061
+     norman_race:1
+     recognition:4
+     retention:1.0
+     retention_denom:7
 
 
 These can also be run across `pd.DataFrame` objects.
@@ -184,33 +282,33 @@ data[cols].head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>2</td>
-      <td>-5.08125</td>
-      <td>-2.523492</td>
+      <td>5</td>
+      <td>-3.20625</td>
+      <td>-1.332875</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
-      <td>-5.08125</td>
+      <td>0</td>
+      <td>-6.33125</td>
       <td>-2.523492</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>-5.08125</td>
+      <td>0</td>
+      <td>-6.33125</td>
       <td>-2.523492</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>4</td>
-      <td>-3.83125</td>
-      <td>-1.729747</td>
+      <td>0</td>
+      <td>-6.33125</td>
+      <td>-2.523492</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>7</td>
-      <td>-1.95625</td>
-      <td>-0.936002</td>
+      <td>5</td>
+      <td>-3.20625</td>
+      <td>-1.332875</td>
     </tr>
   </tbody>
 </table>
