@@ -330,4 +330,5 @@ data[cols].head()
  Unless you're Will, you probably don't need to be in here. 
  - `normative_data` is currently stored in the data/norms directory as yaml formats.
  Refer here (tbd) for an explanation of the YAML format.
+ - `batteries` is a collection of all of the neuropsycological batteries currently implemented.
   
