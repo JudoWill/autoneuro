@@ -3,5 +3,8 @@ pandas
 matplotlib
 bokeh
 numexpr
-jupyter
+#jupyter
 nbdev
+seaborn
+openpyxl
+scikit-learn

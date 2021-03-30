@@ -1,0 +1,13 @@
+name: 'SENAS Word List Learning'
+short_name: 'SENAS_wordlist'
+
+
+operations:
+  - type: equation
+    equation: 'senas_wordlist_t1 + senas_wordlist_t2 + senas_wordlist_t3 + senas_wordlist_t4 + senas_wordlist_t5'
+    fields: ['senas_wordlist_t1', 'senas_wordlist_t2', 'senas_wordlist_t3', 'senas_wordlist_t4', 'senas_wordlist_t5']
+    out_field: senas_wordlist_total
+  - type: equation
+    equation: 'senas_wordlist_total'
+    fields: ['senas_wordlist_total']
+    out_field: senas_wordlist_total_plc

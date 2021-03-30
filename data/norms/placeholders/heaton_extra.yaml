@@ -1,0 +1,17 @@
+short_name: 'heaton_placeholder'
+reference: 'None'
+
+operations:
+ - type: equation
+   equation: "heaton_immediate"
+   fields: ['heaton_immediate']
+   out_field: 'heaton_immediate_plc'
+ - type: equation
+   equation: "heaton_recognition"
+   fields: ['heaton_recognition']
+   out_field: 'heaton_recognition_plc'
+ 
+ - type: equation
+   equation: "heaton_retention"
+   fields: ['heaton_retention']
+   out_field: 'heaton_retention_plc'

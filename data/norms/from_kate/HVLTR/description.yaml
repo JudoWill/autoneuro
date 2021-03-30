@@ -4,11 +4,11 @@ Reference: 'Excel Sheet Lookup Conversion'
 Population_Description: '?'
 lookup_table: "lookup_table.csv"
 universal_cols:
-  - Age__eq
+  - age__eq
 groupings:
   HVLTtotal:
-    - HVLTtotal__mean
-    - HVLTtotal__std
+    - hvlthits__mean
+    - hvlthits__std
   HVLTdelay:
     - HVLTdelay__mean
     - HVLTdelay__std

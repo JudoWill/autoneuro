@@ -1,0 +1,33 @@
+short_name: 'mWCST_placeholder'
+reference: 'None'
+
+operations:
+ 
+ - type: equation
+   equation: "mwcstcat"
+   fields: ['mwcstcat']
+   out_field: 'mwcstcat_plc'
+   
+ - type: equation
+   equation: "mwcstpersev"
+   fields: ['mwcstpersev']
+   out_field: 'mwcstpersev_plc'
+   
+ - type: equation
+   equation: "mwcsterrors"
+   fields: ['mwcsterrors']
+   out_field: 'mwcsterrors_plc'
+   
+ - type: equation
+   equation: "mwcstpersev/mwcsterrors"
+   fields: ['mwcstpersev', 'mwcsterrors']
+   out_field: 'mwcstpercentpersev'
+   
+ - type: equation
+   equation: "mwcstpercentpersev"
+   fields: ['mwcstpercentpersev']
+   out_field: 'mwcstpercentpersev_plc'
+   
+ 
+   
+   

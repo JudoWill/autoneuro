@@ -1,0 +1,37 @@
+short_name: 'wais4_placeholder'
+reference: 'None'
+
+operations:
+ 
+ - type: equation
+   equation: "digitsforwardwais4"
+   fields: ['digitsforwardwais4', 'age']
+   out_field: 'digitsforwardwais4_plc'
+   
+ - type: equation
+   equation: "ldsfwais4"
+   fields: ['ldsfwais4']
+   out_field: 'ldsfwais4_plc'
+   
+ - type: equation
+   equation: "digitsbackwardwais4"
+   fields: ['digitsbackwardwais4']
+   out_field: 'digitsbackwardwais4_plc'
+   
+ - type: equation
+   equation: "ldsbwais4"
+   fields: ['ldsbwais4']
+   out_field: 'backwards_lds_plc'
+   
+ - type: equation
+   equation: "digitssequencingwais4"
+   fields: ['digitssequencingwais4']
+   out_field: 'digitssequencingwais4_plc'
+   
+ - type: equation
+   equation: "ldsswais4"
+   fields: ['ldsswais4']
+   out_field: 'ldsswais4_plc'   
+   
+# DigitsForwardWAIS4	LDSFWAIS4	DigitsBackwardWAIS4	LDSBWAIS4	DigitsSequencingWAIS4	LDSSWAIS4
+   

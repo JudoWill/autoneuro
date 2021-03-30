@@ -1,0 +1,51 @@
+short_name: 'letter_fluency_placeholder'
+reference: 'None'
+
+operations:
+ - type: equation
+   equation: "letterfluencyf_q1+letterfluencyf_q2+letterfluencyf_q3+letterfluencyf_q4"
+   fields: ['letterfluencyf_q1', 'letterfluencyf_q2', 'letterfluencyf_q3', 'letterfluencyf_q4']
+   out_field: 'letterfluencyf_total'
+   
+   #AE: LetterFluencyF.intr
+   #AF: LetterFluencyF.pers
+
+ - type: equation
+   equation: "letterfluencya_q1+letterfluencya_q2+letterfluencya_q3+letterfluencya_q4"
+   fields: ['letterfluencya_q1', 'letterfluencya_q2', 'letterfluencya_q3', 'letterfluencya_q4']
+   out_field: 'letterfluencya_total'
+   
+   #AL: LetterFluencyA.intr
+   #AM: LetterFluencyA.pers
+
+ - type: equation
+   equation: "letterfluencys_q1+letterfluencys_q2+letterfluencys_q3+letterfluencys_q4"
+   fields: ['letterfluencys_q1', 'letterfluencys_q2', 'letterfluencys_q3', 'letterfluencys_q4']
+   out_field: 'letterfluencys_total'
+   
+   #AS: LetterFluencyS.intr
+   #AT: LetterFluencyS.pers
+   
+ - type: equation
+   equation: "letterfluencyf_total+letterfluencya_total+letterfluencys_total"
+   fields: ['letterfluencyf_total', 'letterfluencya_total', 'letterfluencys_total']
+   out_field: 'letterfluencyfas_total'
+   
+ - type: normative_lookup
+   measure_col: letterfluencyfas_total
+   filter_cols: ['age', 'education']
+   out_name: 'letterfluencyfas_total_heaton'
+
+   table:
+    - filter: (16 <= age) & (age <= 59) & (0 <= education) & (education <= 8)
+      mean: 38.5
+      std: 12
+    - filter: (16 <= age) & (age <= 59) & (9 <= education) & (education <= 12)
+      mean: 40.5
+      std: 10.7
+    - filter: (16 <= age) & (age <= 59) & (13 <= education)
+      mean: 44.7
+      std: 11.2
+   
+# (LetterFluencyFAS), Phonemic Fluency-S (LetterFluencyS), Category Fluency-Animals (CategoryFluency)
+   

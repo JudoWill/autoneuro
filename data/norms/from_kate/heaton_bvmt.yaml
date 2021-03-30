@@ -3,23 +3,27 @@ reference: 'Excel Sheet Lookup Conversion'
 
 operations:
   - type: normative_lookup
-    measure_col: immediate
+    measure_col: bvmt_immediate
     filter_cols: ['age']
-    out_name: 'heaton_immediate'
+    out_name: 'bvmt_immediate_heaton'
 
     table:
       - filter: (18 <= age) & (age <= 21)
         mean: 28.74
         std: 4.32
+        
       - filter: (20 <= age) & (age <= 23)
         mean: 28.44
         std: 4.38
+        
       - filter: (24 <= age) & (age <= 25)
         mean: 27.83
         std: 4.48
+        
       - filter: (26 <= age) & (age <= 29)
         mean: 27.52
         std: 4.54
+        
       - filter: (30 <= age) & (age <= 33)
         mean: 26.92
         std: 4.64
@@ -64,9 +68,9 @@ operations:
         std: 6.1
 
   - type: normative_lookup
-    measure_col: retention
+    measure_col: bvmt_retention
     filter_cols: ['age']
-    out_name: 'heaton_retention'
+    out_name: 'bvmt_retention_heaton'
     table:
       - filter: (18 <= age) & (age <= 21)
         mean: 0.9534
@@ -119,9 +123,9 @@ operations:
 
 
   - type: normative_lookup
-    measure_col: delay
+    measure_col: bvmt_delay
     filter_cols: ['age']
-    out_name: 'heaton_delay'
+    out_name: 'bvmt_delay_heaton'
     table:
       - filter: (18 <= age) & (age <= 21)
         mean: 10.79
@@ -179,9 +183,9 @@ operations:
         std: 2.9
 
   - type: normative_lookup
-    measure_col: recognition
+    measure_col: bvmt_recognition
     filter_cols: ['age']
-    out_name: 'heaton_recognition'
+    out_name: 'bvmt_recognition_heaton'
 
     table:
       - filter: (18 <= age) & (age <= 21)

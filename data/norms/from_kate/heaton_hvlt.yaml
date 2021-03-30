@@ -1,0 +1,349 @@
+operations:
+- equation: hvlt_trial1+hvlt_trial2+hvlt_trial3
+  fields:
+  - hvlt_trial1
+  - hvlt_trial2
+  - hvlt_trial3
+  out_field: hvlt_total
+  type: equation
+- equation: hvlt_hits+hvlt_false_pos
+  fields:
+  - hvlt_hits
+  - hvlt_false_pos
+  out_field: hvlt_recognition
+  type: equation
+- filter_cols:
+  - age
+  measure_col: hvlt_total
+  out_name: hvlt_total_heaton
+  table:
+  - filter: age == 20
+    mean: 28.76
+    std: 3.92
+  - filter: age == 21
+    mean: 28.76
+    std: 3.92
+  - filter: age == 22
+    mean: 28.76
+    std: 3.92
+  - filter: age == 23
+    mean: 28.76
+    std: 3.92
+  - filter: age == 24
+    mean: 28.76
+    std: 3.92
+  - filter: age == 25
+    mean: 28.76
+    std: 3.92
+  - filter: age == 26
+    mean: 28.76
+    std: 3.92
+  - filter: age == 27
+    mean: 28.76
+    std: 3.92
+  - filter: age == 28
+    mean: 28.71
+    std: 4.57
+  - filter: age == 29
+    mean: 28.71
+    std: 4.57
+  - filter: age == 30
+    mean: 28.71
+    std: 4.57
+  - filter: age == 31
+    mean: 28.71
+    std: 4.57
+  - filter: age == 32
+    mean: 28.71
+    std: 4.57
+  - filter: age == 33
+    mean: 28.71
+    std: 4.57
+  - filter: age == 34
+    mean: 28.04
+    std: 4.43
+  - filter: age == 35
+    mean: 28.04
+    std: 4.43
+  - filter: age == 36
+    mean: 28.04
+    std: 4.43
+  - filter: age == 37
+    mean: 28.04
+    std: 4.43
+  - filter: age == 38
+    mean: 28.22
+    std: 4.05
+  - filter: age == 39
+    mean: 28.22
+    std: 4.05
+  - filter: age == 40
+    mean: 28.22
+    std: 4.05
+  - filter: age == 41
+    mean: 28.22
+    std: 4.05
+  - filter: age == 42
+    mean: 28.22
+    std: 4.05
+  - filter: age == 43
+    mean: 28.22
+    std: 4.05
+  - filter: age == 44
+    mean: 28.54
+    std: 4.23
+  - filter: age == 45
+    mean: 28.54
+    std: 4.23
+  - filter: age == 46
+    mean: 28.54
+    std: 4.23
+  - filter: age == 47
+    mean: 28.54
+    std: 4.23
+  - filter: age == 48
+    mean: 27.86
+    std: 3.95
+  - filter: age == 49
+    mean: 27.86
+    std: 3.95
+  - filter: age == 50
+    mean: 27.86
+    std: 3.95
+  - filter: age == 51
+    mean: 27.86
+    std: 3.95
+  - filter: age == 52
+    mean: 27.86
+    std: 3.95
+  - filter: age == 53
+    mean: 27.86
+    std: 3.95
+  - filter: age >= 54
+    mean: 27.86
+    std: 3.95
+  type: normative_lookup
+- filter_cols:
+  - age
+  measure_col: hvlt_delay
+  out_name: hvlt_delay_heaton
+  table:
+  - filter: age == 20
+    mean: 10.51
+    std: 1.55
+  - filter: age == 21
+    mean: 10.51
+    std: 1.55
+  - filter: age == 22
+    mean: 10.51
+    std: 1.55
+  - filter: age == 23
+    mean: 10.51
+    std: 1.55
+  - filter: age == 24
+    mean: 10.51
+    std: 1.55
+  - filter: age == 25
+    mean: 10.51
+    std: 1.55
+  - filter: age == 26
+    mean: 10.51
+    std: 1.55
+  - filter: age == 27
+    mean: 10.51
+    std: 1.55
+  - filter: age == 28
+    mean: 10.24
+    std: 1.94
+  - filter: age == 29
+    mean: 10.24
+    std: 1.94
+  - filter: age == 30
+    mean: 10.24
+    std: 1.94
+  - filter: age == 31
+    mean: 10.24
+    std: 1.94
+  - filter: age == 32
+    mean: 10.24
+    std: 1.94
+  - filter: age == 33
+    mean: 10.24
+    std: 1.94
+  - filter: age == 34
+    mean: 9.92
+    std: 2.04
+  - filter: age == 35
+    mean: 9.92
+    std: 2.04
+  - filter: age == 36
+    mean: 9.92
+    std: 2.04
+  - filter: age == 37
+    mean: 9.92
+    std: 2.04
+  - filter: age == 38
+    mean: 10.16
+    std: 2.08
+  - filter: age == 39
+    mean: 10.16
+    std: 2.08
+  - filter: age == 40
+    mean: 10.16
+    std: 2.08
+  - filter: age == 41
+    mean: 10.16
+    std: 2.08
+  - filter: age == 42
+    mean: 10.16
+    std: 2.08
+  - filter: age == 43
+    mean: 10.16
+    std: 2.08
+  - filter: age == 44
+    mean: 10.2
+    std: 2.08
+  - filter: age == 45
+    mean: 10.2
+    std: 2.08
+  - filter: age == 46
+    mean: 10.2
+    std: 2.08
+  - filter: age == 47
+    mean: 10.2
+    std: 2.08
+  - filter: age == 48
+    mean: 10.06
+    std: 1.73
+  - filter: age == 49
+    mean: 10.06
+    std: 1.73
+  - filter: age == 50
+    mean: 10.06
+    std: 1.73
+  - filter: age == 51
+    mean: 10.06
+    std: 1.73
+  - filter: age == 52
+    mean: 10.06
+    std: 1.73
+  - filter: age == 53
+    mean: 10.06
+    std: 1.73
+  - filter: age >= 54
+    mean: 10.06
+    std: 1.73
+  type: normative_lookup
+- filter_cols:
+  - age
+  measure_col: hvlt_recognition
+  out_name: hvlt_recognition_heaton
+  table:
+  - filter: age == 20
+    mean: 10.88
+    std: 1.36
+  - filter: age == 21
+    mean: 10.88
+    std: 1.36
+  - filter: age == 22
+    mean: 10.88
+    std: 1.36
+  - filter: age == 23
+    mean: 10.88
+    std: 1.36
+  - filter: age == 24
+    mean: 10.88
+    std: 1.36
+  - filter: age == 25
+    mean: 10.88
+    std: 1.36
+  - filter: age == 26
+    mean: 10.88
+    std: 1.36
+  - filter: age == 27
+    mean: 10.88
+    std: 1.36
+  - filter: age == 28
+    mean: 10.84
+    std: 1.39
+  - filter: age == 29
+    mean: 10.84
+    std: 1.39
+  - filter: age == 30
+    mean: 10.84
+    std: 1.39
+  - filter: age == 31
+    mean: 10.84
+    std: 1.39
+  - filter: age == 32
+    mean: 10.84
+    std: 1.39
+  - filter: age == 33
+    mean: 10.84
+    std: 1.39
+  - filter: age == 34
+    mean: 10.97
+    std: 1.27
+  - filter: age == 35
+    mean: 10.97
+    std: 1.27
+  - filter: age == 36
+    mean: 10.97
+    std: 1.27
+  - filter: age == 37
+    mean: 10.97
+    std: 1.27
+  - filter: age == 38
+    mean: 11.15
+    std: 1.06
+  - filter: age == 39
+    mean: 11.15
+    std: 1.06
+  - filter: age == 40
+    mean: 11.15
+    std: 1.06
+  - filter: age == 41
+    mean: 11.15
+    std: 1.06
+  - filter: age == 42
+    mean: 11.15
+    std: 1.06
+  - filter: age == 43
+    mean: 11.15
+    std: 1.06
+  - filter: age == 44
+    mean: 11.07
+    std: 1.24
+  - filter: age == 45
+    mean: 11.07
+    std: 1.24
+  - filter: age == 46
+    mean: 11.07
+    std: 1.24
+  - filter: age == 47
+    mean: 11.07
+    std: 1.24
+  - filter: age == 48
+    mean: 10.79
+    std: 1.61
+  - filter: age == 49
+    mean: 10.79
+    std: 1.61
+  - filter: age == 50
+    mean: 10.79
+    std: 1.61
+  - filter: age == 51
+    mean: 10.79
+    std: 1.61
+  - filter: age == 52
+    mean: 10.79
+    std: 1.61
+  - filter: age == 53
+    mean: 10.79
+    std: 1.61
+  - filter: age >= 54
+    mean: 10.79
+    std: 1.61
+  type: normative_lookup
+reference: Excel Sheet Lookup Conversion
+short_name: hvlt_heaton

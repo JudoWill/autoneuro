@@ -1,0 +1,13 @@
+short_name: 'trails_placeholder'
+reference: 'None'
+
+operations:
+ - type: equation
+   equation: "trailA"
+   fields: ['trailA']
+   out_field: 'trailA_plc'
+   
+ - type: equation
+   equation: "trailB"
+   fields: ['trailB']
+   out_field: 'trailB_plc'   

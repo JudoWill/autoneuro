@@ -22,8 +22,17 @@ entries:
       title: Domains
       url: domains.html
     - output: web,pdf
-      title: Title
-      url: initial_explore.html
+      title: Field Mapping
+      url: field_mapping.html
+    - output: web,pdf
+      title: CNNS
+      url: cnns.html
+    - output: web,pdf
+      title: explorations
+      url: exploration.html
+    - output: web,pdf
+      title: Batteries
+      url: batteries.html
     output: web
     title: autoneuro
   output: web

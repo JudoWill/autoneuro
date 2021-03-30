@@ -1,0 +1,9 @@
+name: 'DUCOM CNNS Transform'
+short_name: 'CNNS'
+
+
+operations:
+  - type: equation
+    equation: 'trial1+trial2+trial3'
+    fields: ['trial1', 'trial2', 'trial3']
+    out_field: immediate

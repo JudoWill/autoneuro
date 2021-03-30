@@ -1,0 +1,9 @@
+short_name: 'rocf_placeholder'
+reference: 'None'
+
+operations:
+ - type: equation
+   equation: "rocf"
+   fields: ['rocf', 'rocf_time']
+   out_field: 'rocf_plc'
+   

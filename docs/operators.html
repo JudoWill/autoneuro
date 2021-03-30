@@ -67,7 +67,7 @@ The third will require an additional strategy effort.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EquationOp" class="doc_header"><code>class</code> <code>EquationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L54" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationOp</code>(<strong><code>out_field</code></strong>, <strong><code>equation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="EquationOp" class="doc_header"><code>class</code> <code>EquationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L58" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationOp</code>(<strong><code>out_field</code></strong>, <strong><code>equation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 <p>Manipulate values with 1numexpr1 equations.</p>
 
@@ -113,16 +113,16 @@ The third will require an additional strategy effort.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;trial1&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;trial2&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;trial3&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-        <span class="s1">&#39;delay&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;hits&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;false_pos&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s1">&#39;copy&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;bvmt_trial1&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;bvmt_trial2&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;bvmt_trial3&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+        <span class="s1">&#39;bvmt_delay&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;bvmt_hits&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;bvmt_false_pos&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s1">&#39;bvmt_copy&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
 
-<span class="n">total_op</span> <span class="o">=</span> <span class="n">EquationOp</span><span class="p">(</span><span class="s1">&#39;immediate&#39;</span><span class="p">,</span>
-                      <span class="s1">&#39;trial1+trial2+trial3&#39;</span><span class="p">,</span>
-                      <span class="p">[</span><span class="s1">&#39;trial1&#39;</span><span class="p">,</span> <span class="s1">&#39;trial2&#39;</span><span class="p">,</span> <span class="s1">&#39;trial3&#39;</span><span class="p">])</span>
+<span class="n">total_op</span> <span class="o">=</span> <span class="n">EquationOp</span><span class="p">(</span><span class="s1">&#39;bvmt_immediate&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;bvmt_trial1+bvmt_trial2+bvmt_trial3&#39;</span><span class="p">,</span>
+                      <span class="p">[</span><span class="s1">&#39;bvmt_trial1&#39;</span><span class="p">,</span> <span class="s1">&#39;bvmt_trial2&#39;</span><span class="p">,</span> <span class="s1">&#39;bvmt_trial3&#39;</span><span class="p">])</span>
 <span class="n">immed</span> <span class="o">=</span> <span class="n">total_op</span><span class="o">.</span><span class="n">process_single</span><span class="p">(</span><span class="n">DATA</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">immed</span> <span class="o">==</span> <span class="mi">18</span>
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;immediate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">immed</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_immediate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">immed</span>
 </pre></div>
 
     </div>
@@ -159,7 +159,7 @@ The third will require an additional strategy effort.</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Used Equation: trial1+trial2+trial3 = 18 = immediate
+<pre>Used Equation: bvmt_trial1+bvmt_trial2+bvmt_trial3 = 18 = bvmt_immediate
 </pre>
 </div>
 </div>
@@ -196,9 +196,9 @@ out_field: 'recognition'</code></pre>
 
 <span class="n">st</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">type: equation</span>
-<span class="s2">equation: &quot;hits-false_pos&quot;</span>
-<span class="s2">fields: [&#39;hits&#39;, &#39;false_pos&#39;]</span>
-<span class="s2">out_field: &#39;recognition&#39;</span>
+<span class="s2">equation: &quot;bvmt_hits-bvmt_false_pos&quot;</span>
+<span class="s2">fields: [&#39;bvmt_hits&#39;, &#39;bvmt_false_pos&#39;]</span>
+<span class="s2">out_field: &#39;bvmt_recognition&#39;</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">ret_op</span> <span class="o">=</span> <span class="n">EquationOp</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">yaml</span><span class="o">.</span><span class="n">full_load</span><span class="p">(</span><span class="n">st</span><span class="p">))</span>
@@ -206,7 +206,7 @@ out_field: 'recognition'</code></pre>
 
 <span class="k">assert</span> <span class="n">recog</span> <span class="o">==</span> <span class="mi">4</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ret_op</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">DATA</span><span class="p">))</span>
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;recognition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recog</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_recognition&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">recog</span>
 </pre></div>
 
     </div>
@@ -219,7 +219,7 @@ out_field: 'recognition'</code></pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Used Equation: hits-false_pos = 4 = recognition
+<pre>Used Equation: bvmt_hits-bvmt_false_pos = 4 = bvmt_recognition
 </pre>
 </div>
 </div>
@@ -249,7 +249,7 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AggregationOp" class="doc_header"><code>class</code> <code>AggregationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L133" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AggregationOp</code>(<strong><code>out_field</code></strong>, <strong><code>aggregation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="AggregationOp" class="doc_header"><code>class</code> <code>AggregationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L146" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AggregationOp</code>(<strong><code>out_field</code></strong>, <strong><code>aggregation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -276,12 +276,12 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ret_denom_op</span> <span class="o">=</span> <span class="n">AggregationOp</span><span class="p">(</span><span class="s1">&#39;retention_denom&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;trial2&#39;</span><span class="p">,</span> <span class="s1">&#39;trial3&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ret_denom_op</span> <span class="o">=</span> <span class="n">AggregationOp</span><span class="p">(</span><span class="s1">&#39;bvmt_retention_denom&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;bvmt_trial2&#39;</span><span class="p">,</span> <span class="s1">&#39;bvmt_trial3&#39;</span><span class="p">])</span>
 <span class="n">re_denom</span> <span class="o">=</span> <span class="n">ret_denom_op</span><span class="o">.</span><span class="n">process_single</span><span class="p">(</span><span class="n">DATA</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">re_denom</span> <span class="o">==</span> <span class="mi">7</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ret_denom_op</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">DATA</span><span class="p">))</span>
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;retention_denom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">re_denom</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_retention_denom&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">re_denom</span>
 </pre></div>
 
     </div>
@@ -294,7 +294,7 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Aggregation: max [trial2, trial3]  = 7
+<pre>Aggregation: max [bvmt_trial2, bvmt_trial3]  = 7
 </pre>
 </div>
 </div>
@@ -319,12 +319,12 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">retent_op</span> <span class="o">=</span> <span class="n">EquationOp</span><span class="p">(</span><span class="s1">&#39;retention&#39;</span><span class="p">,</span> <span class="s1">&#39;delay/retention_denom&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">,</span> <span class="s1">&#39;retention_denom&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">retent_op</span> <span class="o">=</span> <span class="n">EquationOp</span><span class="p">(</span><span class="s1">&#39;bvmt_retention&#39;</span><span class="p">,</span> <span class="s1">&#39;bvmt_delay/bvmt_retention_denom&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;bvmt_delay&#39;</span><span class="p">,</span> <span class="s1">&#39;bvmt_retention_denom&#39;</span><span class="p">])</span>
 <span class="n">retent</span> <span class="o">=</span> <span class="n">retent_op</span><span class="o">.</span><span class="n">process_single</span><span class="p">(</span><span class="n">DATA</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">retent</span> <span class="o">==</span> <span class="mi">8</span><span class="o">/</span><span class="mi">7</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">retent_op</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">DATA</span><span class="p">))</span>
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;retention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retent</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_retention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">retent</span>
 </pre></div>
 
     </div>
@@ -337,7 +337,7 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Used Equation: delay/retention_denom = 1.1428571428571428 = retention
+<pre>Used Equation: bvmt_delay/bvmt_retention_denom = 1.1428571428571428 = bvmt_retention
 </pre>
 </div>
 </div>
@@ -367,7 +367,7 @@ By convention we clip these to a [0,1] scale, which we'll need an operation for 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ClipOp" class="doc_header"><code>class</code> <code>ClipOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L181" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ClipOp</code>(<strong><code>field</code></strong>, <strong><code>lower</code></strong>=<em><code>0</code></em>, <strong><code>upper</code></strong>=<em><code>1</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="ClipOp" class="doc_header"><code>class</code> <code>ClipOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L202" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ClipOp</code>(<strong><code>field</code></strong>, <strong><code>lower</code></strong>=<em><code>0</code></em>, <strong><code>upper</code></strong>=<em><code>1</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -394,12 +394,12 @@ By convention we clip these to a [0,1] scale, which we'll need an operation for 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ret_clip_op</span> <span class="o">=</span> <span class="n">ClipOp</span><span class="p">(</span><span class="s1">&#39;retention&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ret_clip_op</span> <span class="o">=</span> <span class="n">ClipOp</span><span class="p">(</span><span class="s1">&#39;bvmt_retention&#39;</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">upper</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ret_clip</span> <span class="o">=</span> <span class="n">ret_clip_op</span><span class="o">.</span><span class="n">process_single</span><span class="p">(</span><span class="n">DATA</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">ret_clip</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">ret_clip_op</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">DATA</span><span class="p">))</span>
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;retention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_clip</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_retention&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret_clip</span>
 </pre></div>
 
     </div>
@@ -412,7 +412,7 @@ By convention we clip these to a [0,1] scale, which we'll need an operation for 
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Clipped retention to [0, 1]
+<pre>Clipped bvmt_retention to [0, 1]
 </pre>
 </div>
 </div>
@@ -431,6 +431,14 @@ We'll need to use these values, along with demographic data, to lookup a "health
 For example:</p>
 <p>A 32 year old should have an <code>immediate</code> memory of 26.9 with a std of 4.6.
 Our example has an <code>immediate</code> of 18, a deficit of 9, roughly 2 stds.</p>
+<p>We'll need to make an object to contain the logic of matching and filtering each "element" of the table. This will be useful to deal with many different types of normative lookups.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This <a href="/autoneuro/operators.html#MeanStdNormative"><code>MeanStdNormative</code></a> represents a table where a mean/std is provided for healthy individuals for a given filter criteria. Each element of the table is one <a href="/autoneuro/operators.html#MeanStdNormative"><code>MeanStdNormative</code></a> object and the <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a> manages a list of these objects.</p>
 
 </div>
 </div>
@@ -446,7 +454,39 @@ Our example has an <code>immediate</code> of 18, a deficit of 9, roughly 2 stds.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="NormativeLookupOp" class="doc_header"><code>class</code> <code>NormativeLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L232" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NormativeLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="MeanStdNormative" class="doc_header"><code>class</code> <code>MeanStdNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L290" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MeanStdNormative</code>(<strong><code>flt</code></strong>, <strong><code>mean</code></strong>, <strong><code>std</code></strong>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
+</blockquote>
+<p>Deal with mean/std scaled -&gt; percentile lookup tables</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="NormativeLookupOp" class="doc_header"><code>class</code> <code>NormativeLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L324" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NormativeLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 <p>Lookup table with normalized scores.</p>
 
@@ -516,11 +556,9 @@ The Heaton norms for the BVMT are currently in <code>data/norms/from_kate/heaton
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>heaton_immediate:
- Matched (30 &lt;= age) &amp; (age &lt;= 33)
- Expecting 26.92 +- 4.64
- Observed: 18
- Z: -1.9224137931034488
+<pre>Matched: (30 &lt;= age) &amp; (age &lt;= 33)
+Expected 26.92+/-4.64 but observed 18
+Scaled to: z=-1.9224137931034488
 </pre>
 </div>
 </div>
@@ -605,7 +643,7 @@ This is done to help <em>normalize</em> the raw values before entering the regre
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BinnedScalingOp" class="doc_header"><code>class</code> <code>BinnedScalingOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L286" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BinnedScalingOp</code>(<strong><code>bins</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_field</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="BinnedScalingOp" class="doc_header"><code>class</code> <code>BinnedScalingOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L384" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BinnedScalingOp</code>(<strong><code>bins</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_field</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -643,13 +681,13 @@ This is done to help <em>normalize</em> the raw values before entering the regre
         <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
         <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;scaled&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}]</span>
 
-<span class="n">scale_op</span> <span class="o">=</span> <span class="n">BinnedScalingOp</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="s1">&#39;delay&#39;</span><span class="p">)</span>
+<span class="n">scale_op</span> <span class="o">=</span> <span class="n">BinnedScalingOp</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="s1">&#39;bvmt_delay&#39;</span><span class="p">)</span>
 <span class="n">delay_scaled</span> <span class="o">=</span> <span class="n">scale_op</span><span class="o">.</span><span class="n">process_single</span><span class="p">(</span><span class="n">DATA</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">delay_scaled</span> <span class="o">==</span> <span class="mi">7</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">scale_op</span><span class="o">.</span><span class="n">explain</span><span class="p">(</span><span class="n">DATA</span><span class="p">))</span>
 
-<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;delay_scaled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">delay_scaled</span>
+<span class="n">DATA</span><span class="p">[</span><span class="s1">&#39;bvmt_delay_scaled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">delay_scaled</span>
 </pre></div>
 
     </div>
@@ -662,7 +700,7 @@ This is done to help <em>normalize</em> the raw values before entering the regre
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>delay matched 8, scaled to 7
+<pre>bvmt_delay matched 8, scaled to 7
 </pre>
 </div>
 </div>
@@ -693,7 +731,7 @@ The race also needs to be converted with white = 0 and AA = 1.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="CategoricalOp" class="doc_header"><code>class</code> <code>CategoricalOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L355" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CategoricalOp</code>(<strong><code>measure_col</code></strong>, <strong><code>mapping</code></strong>, <strong><code>out_col</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="CategoricalOp" class="doc_header"><code>class</code> <code>CategoricalOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L459" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CategoricalOp</code>(<strong><code>measure_col</code></strong>, <strong><code>mapping</code></strong>, <strong><code>out_col</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -773,7 +811,7 @@ The <a href="/autoneuro/operators.html#EquationFilterOp"><code>EquationFilterOp<
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EquationFilterOp" class="doc_header"><code>class</code> <code>EquationFilterOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L407" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationFilterOp</code>(<strong><code>fields</code></strong>, <strong><code>regressions</code></strong>, <strong><code>out_field</code></strong>, <strong><code>result_type</code></strong>=<em><code>'zscale'</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="EquationFilterOp" class="doc_header"><code>class</code> <code>EquationFilterOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L518" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationFilterOp</code>(<strong><code>fields</code></strong>, <strong><code>regressions</code></strong>, <strong><code>out_field</code></strong>, <strong><code>result_type</code></strong>=<em><code>'zscale'</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -801,6 +839,203 @@ Examine the <code>data/norms/norman/norman_bvmt_regnorm.yaml</code> for a comple
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Multidemensional-Lookups">Multidemensional Lookups<a class="anchor-link" href="#Multidemensional-Lookups"> </a></h1><p>Some set of Heaton Norms (Grooved Peg, trails, etc) require a multi-step lookup. The original tables look like this:</p>
+<table>
+<thead><tr>
+<th>5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>Education</th>
+<th>Gender</th>
+<th>Age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>80</td>
+<td>70</td>
+<td>50</td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>100</td>
+<td>85</td>
+<td>72</td>
+<td>48</td>
+<td>11</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>100</td>
+<td>82</td>
+<td>75</td>
+<td>42</td>
+<td>15</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>100</td>
+<td>82</td>
+<td>75</td>
+<td>42</td>
+<td>15</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Where the first columns refer to Scaled scores and the last columns refer to categorical features. In this case, the intent would be to get the appropriate scaled score for the test, look to the row that corresponds with the patient's Education, Gender, and Age.</p>
+<p>These are actually just more cases of <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a> and <a href="/autoneuro/operators.html#MeanStdNormative"><code>MeanStdNormative</code></a>. So, the approach is the same.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A general <a href="/autoneuro/operators.html#LookupNormative"><code>LookupNormative</code></a> class takes a mapping dictionary that maps raw values to scaled values. These can then be post-processed using <code>post</code>. This can convert <em>standard scores</em> and <em>percentiles</em> to <em>z-scales</em>.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="LookupNormative" class="doc_header"><code>class</code> <code>LookupNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L591" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LookupNormative</code>(<strong><code>flt</code></strong>, <strong><code>mapping</code></strong>, <strong><code>post</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
+</blockquote>
+<p>Deal with scaled -&gt; percentile lookup tables</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This <a href="/autoneuro/operators.html#MultiLookupOp"><code>MultiLookupOp</code></a> is just a light wrapper around the <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a> that implements some helper features to create these items from "Kate Excel Sheet" format.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="MultiLookupOp" class="doc_header"><code>class</code> <code>MultiLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L648" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultiLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a></p>
+</blockquote>
+<p>Lookup table with normalized scores.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">multi_op</span> <span class="o">=</span> <span class="n">MultiLookupOp</span><span class="o">.</span><span class="n">from_sheet_format</span><span class="p">(</span><span class="s1">&#39;data/norms/from_kate/sheets/GPD.csv&#39;</span><span class="p">,</span>
+                                           <span class="n">HEATON_MAPPINGS</span><span class="p">,</span>
+                                           <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;heaton_gender&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">],</span>
+                                           <span class="s1">&#39;grooved_peg_dom_scaled&#39;</span><span class="p">,</span>
+                                           <span class="s1">&#39;grooved_peg_dom_heaton&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">multi_op</span><span class="o">.</span><span class="n">explain</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">&#39;heaton_gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span>
+                        <span class="s1">&#39;grooved_peg_dom_scaled&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Matched: ((45 &lt;= age) &amp; (age &lt; 50)) &amp; ((12 &lt; education) &amp; (education &lt;= 13)) &amp; (heaton_gender == 1)
+Mapped to: 57
+Scaled to: z=0.7
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 

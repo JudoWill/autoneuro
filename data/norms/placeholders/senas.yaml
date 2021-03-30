@@ -1,0 +1,25 @@
+short_name: 'senas_placeholder'
+reference: 'None'
+
+operations:
+ - type: equation
+   equation: "list_sorting1"
+   fields: ['list_sorting1']
+   out_field: 'list_sorting1_unnorm'
+   
+ - type: equation
+   equation: "list_sorting1_any"
+   fields: ['list_sorting1_any']
+   out_field: 'list_sorting1_any_unnorm'
+   
+ - type: equation
+   equation: "list_sorting1_serial"
+   fields: ['list_sorting1_serial']
+   out_field: 'list_sorting1_serial_unnorm'
+   
+   
+   
+#DigitBackwardSENAS	DigitBackwardSENAS.any	DigitBackwardSENAS.serial	VisualBackwardSENAS	VisualBackwardSENAS.any	VisualBackwardSENAS.serial
+   
+#ListSorting1SENAS	ListSorting1SENAS.any	ListSorting1SENAS.serial	ListSorting2SENAS	ListSorting2SENAS.any	ListSorting2SENAS.serial	WorkingMemorySENAS
+   

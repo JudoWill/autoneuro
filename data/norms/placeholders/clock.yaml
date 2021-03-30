@@ -1,0 +1,16 @@
+short_name: 'clock_placeholder'
+reference: 'None'
+
+#clockcommand1
+#clockcopy1
+#clockcommand2
+#clockcopy2
+
+
+operations:
+ - type: equation
+   equation: "clock_copy"
+   fields: ['clockcommand1', 'clockcopy1', 'clockcommand2', 'clockcommand2']
+   out_field: 'clock_copy_plc'
+   
+ 

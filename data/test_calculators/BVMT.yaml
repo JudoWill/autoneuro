@@ -4,23 +4,23 @@ short_name: 'BVMT'
 
 operations:
   - type: equation
-    equation: 'trial1+trial2+trial3'
-    fields: ['trial1', 'trial2', 'trial3']
-    out_field: immediate
+    equation: 'bvmt_trial1+bvmt_trial2+bvmt_trial3'
+    fields: ['bvmt_trial1', 'bvmt_trial2', 'bvmt_trial3']
+    out_field: bvmt_immediate
   - type: agg
     method: 'max'
-    fields: ['trial2', 'trial3']
-    out_field: retention_denom
+    fields: ['bvmt_trial2', 'bvmt_trial3']
+    out_field: bvmt_retention_denom
   - type: equation
-    equation: 'delay/retention_denom'
-    fields: [ 'delay', 'retention_denom']
-    out_field: retention
+    equation: 'bvmt_delay/bvmt_retention_denom'
+    fields: [ 'bvmt_delay', 'bvmt_retention_denom']
+    out_field: bvmt_retention
   - type: clip
-    field: retention
+    field: bvmt_retention
     lower: 0
     upper: 1
   - type: equation
-    equation: 'hits-false_pos'
-    fields: ['hits', 'false_pos']
-    out_field: 'recognition'
+    equation: 'bvmt_hits-bvmt_false_pos'
+    fields: ['bvmt_hits', 'bvmt_false_pos']
+    out_field: 'bvmt_recognition'
 
