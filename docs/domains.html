@@ -81,190 +81,10 @@ nb_path: "03_domains.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mapper</span> <span class="o">=</span> <span class="n">FieldMapper</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data/field_mappings.xlsx&#39;</span><span class="p">)</span>
-<span class="n">mapper</span><span class="o">.</span><span class="n">mapping_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1">#apper.mapping_df.head()</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>internal_field</th>
-      <th>origin</th>
-      <th>section</th>
-      <th>redcap_id</th>
-      <th>oldneuro_id</th>
-      <th>cnns_id</th>
-      <th>field_type</th>
-      <th>field_label</th>
-      <th>category_labels</th>
-      <th>note</th>
-      <th>...</th>
-      <th>text_validation_min</th>
-      <th>text_validation_max</th>
-      <th>indentifier</th>
-      <th>branch_logic</th>
-      <th>required</th>
-      <th>custom_alignment</th>
-      <th>survey_question_number</th>
-      <th>matrix_group_name</th>
-      <th>matrix_ranking</th>
-      <th>field_annotation</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>study_id</td>
-      <td>case_report_form</td>
-      <td>Visit</td>
-      <td>study_id</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>text</td>
-      <td>Patient ID</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>patient_visit_number</td>
-      <td>case_report_form</td>
-      <td>Visit</td>
-      <td>patient_visit_number</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>text</td>
-      <td>Patient visit number</td>
-      <td>NaN</td>
-      <td>Written as R0X</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>date_of_visit</td>
-      <td>case_report_form</td>
-      <td>Visit</td>
-      <td>date_of_visit</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>text</td>
-      <td>Date of visit</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>dob</td>
-      <td>case_report_form</td>
-      <td>Demographics Information</td>
-      <td>dob</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>text</td>
-      <td>Year of Birth</td>
-      <td>NaN</td>
-      <td>Enter year only</td>
-      <td>...</td>
-      <td>1900</td>
-      <td>2500.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>age</td>
-      <td>case_report_form</td>
-      <td>Demographics Information</td>
-      <td>age</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>text</td>
-      <td>Age</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 21 columns</p>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -280,219 +100,10 @@ nb_path: "03_domains.ipynb"
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mapper</span> <span class="o">=</span> <span class="n">FieldMapper</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data/field_mappings.xlsx&#39;</span><span class="p">)</span>
 <span class="n">map_neuro</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">all_neuro</span><span class="p">,</span> <span class="s1">&#39;oldneuro_id&#39;</span><span class="p">,</span> <span class="s1">&#39;internal_field&#39;</span><span class="p">)</span>
-<span class="n">map_neuro</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#map_neuro.head().dropna(axis=1)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th>age</th>
-      <th>bvmt_copy</th>
-      <th>bvmt_delay</th>
-      <th>bvmt_false_pos</th>
-      <th>bvmt_hits</th>
-      <th>bvmtform</th>
-      <th>categoryfluency_intr</th>
-      <th>categoryfluency_pers</th>
-      <th>categoryfluency_q1</th>
-      <th>categoryfluency_q2</th>
-      <th>...</th>
-      <th>senas_wordlist_t2pers</th>
-      <th>senas_wordlist_t3intr</th>
-      <th>senas_wordlist_t3pers</th>
-      <th>senas_wordlist_t4</th>
-      <th>senas_wordlist_t4intr</th>
-      <th>senas_wordlist_t4pers</th>
-      <th>senas_wordlist_t5</th>
-      <th>senas_wordlist_t5intr</th>
-      <th>senas_wordlist_t5pers</th>
-      <th>traila</th>
-    </tr>
-    <tr>
-      <th>PatientID</th>
-      <th>Visit</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="2" valign="top">1</th>
-      <th>1</th>
-      <td>59</td>
-      <td>11.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>6.0</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>5.0</td>
-      <td>5.0</td>
-      <td>...</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>12.0</td>
-      <td>3.0</td>
-      <td>4.0</td>
-      <td>11.0</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>50.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>62</td>
-      <td>3.0</td>
-      <td>28.0</td>
-      <td>10.0</td>
-      <td>9.0</td>
-      <td>33</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>5.0</td>
-      <td>6.0</td>
-      <td>...</td>
-      <td>25.0</td>
-      <td>16.0</td>
-      <td>5.0</td>
-      <td>4.0</td>
-      <td>4.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>9.0</td>
-      <td>4.0</td>
-      <td>41.0</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">2</th>
-      <th>1</th>
-      <td>62</td>
-      <td>11.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>5.0</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>5.0</td>
-      <td>2.0</td>
-      <td>...</td>
-      <td>2.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>5.0</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>4.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>63.0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>67</td>
-      <td>4.0</td>
-      <td>9.5</td>
-      <td>10.0</td>
-      <td>9.0</td>
-      <td>38</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>10.0</td>
-      <td>3.0</td>
-      <td>...</td>
-      <td>125.0</td>
-      <td>12.0</td>
-      <td>4.0</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>5.0</td>
-      <td>4.0</td>
-      <td>37.0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <th>1</th>
-      <td>65</td>
-      <td>11.0</td>
-      <td>4.0</td>
-      <td>0.0</td>
-      <td>4.0</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.0</td>
-      <td>3.0</td>
-      <td>...</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>6.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>56.0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 62 columns</p>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -644,7 +255,7 @@ This is automatically done using a mean across z-scaled features to account for 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67ee28aeb0&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62ced0fd60&gt;</pre>
 </div>
 
 </div>
@@ -864,7 +475,7 @@ This is automatically done using a mean across z-scaled features to account for 
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>&lt;ipython-input-60-9b5c24f4a51b&gt;:141: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
+<pre>&lt;ipython-input-9-f532c61f3f52&gt;:142: MatplotlibDeprecationWarning: normalize=None does not normalize if the sum is less than 1 but this behavior is deprecated since 3.3 until two minor releases later. After the deprecation period the default value will be normalize=True. To prevent normalization pass normalize=False 
   ax.pie(self._weights,
 </pre>
 </div>
@@ -1066,7 +677,7 @@ This is automatically done using a mean across z-scaled features to account for 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67eb3d6370&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bfcb9e50&gt;</pre>
 </div>
 
 </div>
@@ -1264,7 +875,7 @@ This seems to be mainly using the Trails Making Test and the Stroop Word Test.</
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67eb56d940&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bee8d640&gt;</pre>
 </div>
 
 </div>
@@ -1455,7 +1066,7 @@ This seems to be mainly using the Trails Making Test and the Stroop Word Test.</
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67e9228d00&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bf086610&gt;</pre>
 </div>
 
 </div>
@@ -1644,7 +1255,7 @@ This seems to be mainly using the Trails Making Test and the Stroop Word Test.</
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67e8776760&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bc597790&gt;</pre>
 </div>
 
 </div>
@@ -1834,7 +1445,7 @@ This seems to be mainly using the Trails Making Test and the Stroop Word Test.</
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67e80d31f0&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bbdf6160&gt;</pre>
 </div>
 
 </div>
@@ -2137,7 +1748,7 @@ This seems to be mainly using the Trails Making Test and the Stroop Word Test.</
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f67e1adcc70&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f62bc1b2880&gt;</pre>
 </div>
 
 </div>
