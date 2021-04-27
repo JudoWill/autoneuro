@@ -15,7 +15,7 @@ operations:
 - filter_cols:
   - age
   measure_col: hvlt_total
-  out_name: hvlt_total_heaton
+  out_name: hvlt_total_heaton_z
   table:
   - filter: age == 20
     mean: 28.76
@@ -126,7 +126,7 @@ operations:
 - filter_cols:
   - age
   measure_col: hvlt_delay
-  out_name: hvlt_delay_heaton
+  out_name: hvlt_delay_heaton_z
   table:
   - filter: age == 20
     mean: 10.51
@@ -237,7 +237,7 @@ operations:
 - filter_cols:
   - age
   measure_col: hvlt_recognition
-  out_name: hvlt_recognition_heaton
+  out_name: hvlt_recognition_heaton_z
   table:
   - filter: age == 20
     mean: 10.88

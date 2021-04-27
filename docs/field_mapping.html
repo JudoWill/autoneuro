@@ -36,6 +36,13 @@ nb_path: "04_field_mapping.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We often need to load different types of files. Here's something smrt to do that.</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -47,7 +54,124 @@ nb_path: "04_field_mapping.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="FieldMapper" class="doc_header"><code>class</code> <code>FieldMapper</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FieldMapper</code>(<strong><code>mapping_df</code></strong>)</p>
+<h4 id="smrt_read" class="doc_header"><code>smrt_read</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>smrt_read</code>(<strong><code>path</code></strong>, <strong><code>fix_id_col</code></strong>=<em><code>None</code></em>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There's also a need to do a moderate amount of cleaning. Here are some utility functions for common issues.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="composite_function" class="doc_header"><code>composite_function</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L27" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>composite_function</code>(<strong>*<code>func</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="fix_dates" class="doc_header"><code>fix_dates</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L36" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fix_dates</code>(<strong><code>df</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="fix_study_ids" class="doc_header"><code>fix_study_ids</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fix_study_ids</code>(<strong><code>df</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="FieldMapper" class="doc_header"><code>class</code> <code>FieldMapper</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/field_mapping.py#L54" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>FieldMapper</code>(<strong><code>mapping_df</code></strong>, <strong><code>post_convert</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -205,7 +329,7 @@ nb_path: "04_field_mapping.ipynb"
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>redcap_id</th>
+      <th></th>
       <th>field_a</th>
       <th>field_b</th>
       <th>field_d</th>
@@ -287,7 +411,7 @@ nb_path: "04_field_mapping.ipynb"
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>cnns_id</th>
+      <th></th>
       <th>fielda</th>
       <th>fieldb</th>
       <th>fieldc</th>
@@ -320,6 +444,736 @@ nb_path: "04_field_mapping.ipynb"
     </tr>
   </tbody>
 </table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">autoneuro.domains</span> <span class="kn">import</span> <span class="n">Collection</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cnac</span> <span class="o">=</span> <span class="n">Collection</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">calcs</span> <span class="o">=</span> <span class="p">[</span><span class="n">bat</span><span class="o">.</span><span class="n">calculator</span> <span class="k">for</span> <span class="n">dom</span> <span class="ow">in</span> <span class="n">cnac</span><span class="o">.</span><span class="n">domains</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">for</span> <span class="n">bat</span> <span class="ow">in</span> <span class="n">dom</span><span class="o">.</span><span class="n">batteries</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cnac</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">update_field_mapping</span><span class="p">(</span><span class="o">*</span><span class="n">calcs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cnac</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">mapping_df</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s1">&#39;data/field_mappings_merged.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mapper</span> <span class="o">=</span> <span class="n">FieldMapper</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data/field_mappings_KD.xlsx&#39;</span><span class="p">,</span>
+                               <span class="n">post_convert</span> <span class="o">=</span> <span class="p">[</span><span class="n">fix_dates</span><span class="p">,</span> <span class="n">fix_study_ids</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SHOW_DATA</span> <span class="o">=</span> <span class="s1">&#39;new&#39;</span> <span class="c1"># new or old</span>
+
+<span class="k">if</span> <span class="n">SHOW_DATA</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">:</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;redcap_id&#39;</span><span class="p">,</span> <span class="s1">&#39;data/ducomout/ClinicalAndTranslati_DATA_2021-04-24_1737.csv&#39;</span><span class="p">),</span>
+             <span class="p">(</span><span class="s1">&#39;cnns_id&#39;</span><span class="p">,</span> <span class="s1">&#39;data/cnns/EXPORT_DD.csv&#39;</span><span class="p">)]</span>
+    <span class="n">req_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cnns_bvmt_t&#39;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;oldneuro_id&#39;</span><span class="p">,</span> <span class="s1">&#39;data/neuro_data.xlsx&#39;</span><span class="p">)]</span>
+    <span class="n">req_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bvmt_trial1&#39;</span><span class="p">]</span>
+
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="n">FieldMapper</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data/field_mappings_merged.xlsx&#39;</span><span class="p">,</span> <span class="n">post_convert</span><span class="o">=</span><span class="p">[</span><span class="n">fix_study_ids</span><span class="p">,</span> <span class="n">fix_dates</span><span class="p">])</span>
+<span class="n">map_neuro</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">multi_merge</span><span class="p">(</span><span class="s1">&#39;internal_field&#39;</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">index_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;study_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date_of_visit&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="n">req_fields</span><span class="p">)</span>
+<span class="n">map_neuro</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/home/will/anaconda3/envs/autoneuro/lib/python3.9/site-packages/IPython/core/interactiveshell.py:3437: DtypeWarning: Columns (2,17,18,97,106,109,112,139,140,141,247,254,268,275,279,281,357,358,363,410,411,477,494,505,535,536,541,707,709,711,853,870,884,928,929,930,944,949,959,966,977,987,988,989,995,1004,1005,1006,1012,1019,1021,1022,1023,1029) have mixed types.Specify dtype option on import or set low_memory=False.
+  exec(code_obj, self.user_global_ns, self.user_ns)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>abdominal_girth</th>
+      <th>age</th>
+      <th>age_first_drivers_license</th>
+      <th>age_first_used_drug</th>
+      <th>agenp</th>
+      <th>aids_defining_indicat2_2dd</th>
+      <th>aids_defining_indicators</th>
+      <th>also_driving_assessment</th>
+      <th>amitriptyline_end_date</th>
+      <th>amitriptyline_start_date</th>
+      <th>...</th>
+      <th>year_diagnosed_tuberculosi</th>
+      <th>year_diagnosed_uterine_can</th>
+      <th>year_diagnosed_with_asthma</th>
+      <th>year_diagnosed_with_copd</th>
+      <th>year_diagnosed_with_diabet</th>
+      <th>year_diagnosed_with_elevat</th>
+      <th>year_diagnosed_with_hypert</th>
+      <th>years_seropositive</th>
+      <th>you_get_angry_at_the_behav</th>
+      <th>you_intend_to_drive_to_des</th>
+    </tr>
+    <tr>
+      <th>study_id</th>
+      <th>date_of_visit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <th>2021-03-11</th>
+      <td>37.5</td>
+      <td>70.0</td>
+      <td>30</td>
+      <td>22yo</td>
+      <td>70.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>2020-11-19</th>
+      <td>51.5</td>
+      <td>61.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>61.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1964.0</td>
+      <td>2008.0</td>
+      <td>2010.0</td>
+      <td>2014.0</td>
+      <td>NaN</td>
+      <td>36 years</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <th>2021-02-25</th>
+      <td>37.0</td>
+      <td>75.0</td>
+      <td>18yo</td>
+      <td>None</td>
+      <td>75.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>1996.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2003.0</td>
+      <td>2019.0</td>
+      <td>2007.0</td>
+      <td>2009.0</td>
+      <td>23 years</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <th>2021-03-16</th>
+      <td>47.5</td>
+      <td>63.0</td>
+      <td>62yo</td>
+      <td>16yo</td>
+      <td>63.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2020.0</td>
+      <td>2019.0</td>
+      <td>2009.0</td>
+      <td>2000.0</td>
+      <td>21 Years</td>
+      <td>2.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <th>2021-01-13</th>
+      <td>50.0</td>
+      <td>51.0</td>
+      <td>30yo</td>
+      <td>13yo</td>
+      <td>51.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1973.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2007.0</td>
+      <td>2012.0</td>
+      <td>25 years</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 1034 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mapped_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bvmt_trial1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>abdominal_girth</th>
+      <th>age</th>
+      <th>age_first_drivers_license</th>
+      <th>age_first_used_drug</th>
+      <th>agenp</th>
+      <th>aids_defining_indicat2_2dd</th>
+      <th>aids_defining_indicators</th>
+      <th>also_driving_assessment</th>
+      <th>amitriptyline_end_date</th>
+      <th>amitriptyline_start_date</th>
+      <th>...</th>
+      <th>year_diagnosed_tuberculosi</th>
+      <th>year_diagnosed_uterine_can</th>
+      <th>year_diagnosed_with_asthma</th>
+      <th>year_diagnosed_with_copd</th>
+      <th>year_diagnosed_with_diabet</th>
+      <th>year_diagnosed_with_elevat</th>
+      <th>year_diagnosed_with_hypert</th>
+      <th>years_seropositive</th>
+      <th>you_get_angry_at_the_behav</th>
+      <th>you_intend_to_drive_to_des</th>
+    </tr>
+    <tr>
+      <th>study_id</th>
+      <th>date_of_visit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <th>2014-11-10</th>
+      <td>NaN</td>
+      <td>59.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>2013-10-22</th>
+      <td>NaN</td>
+      <td>62.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>2014-11-10</th>
+      <td>NaN</td>
+      <td>65.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">5</th>
+      <th>2013-12-12</th>
+      <td>NaN</td>
+      <td>54.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2020-11-19</th>
+      <td>51.5</td>
+      <td>61.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>61.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1964.0</td>
+      <td>2008.0</td>
+      <td>2010.0</td>
+      <td>2014.0</td>
+      <td>NaN</td>
+      <td>36 years</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>733</th>
+      <th>2020-01-29</th>
+      <td>47.0</td>
+      <td>64.0</td>
+      <td>None</td>
+      <td>23</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>29</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>742</th>
+      <th>2020-02-27</th>
+      <td>45.0</td>
+      <td>41.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>21</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>757</th>
+      <th>2021-01-12</th>
+      <td>41.0</td>
+      <td>48.0</td>
+      <td>35yo</td>
+      <td>None</td>
+      <td>48.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2017.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>24 years</td>
+      <td>0.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>759</th>
+      <th>2021-01-27</th>
+      <td>36.5</td>
+      <td>43.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>43.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>13 years</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>761</th>
+      <th>2021-02-09</th>
+      <td>43.5</td>
+      <td>44.0</td>
+      <td>18</td>
+      <td>16yo</td>
+      <td>45.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>2010.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2020.0</td>
+      <td>NaN</td>
+      <td>1 years</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>256 rows × 940 columns</p>
 </div>
 </div>
 

@@ -47,7 +47,7 @@ class AbstractCalculator(object):
 
     def explain(self, row):
 
-        ins = [f'{f}:{row[f]}' for f in self.fields]
+        ins = [f'{f}:{row.get(f)}' for f in self.fields]
         print('Input: \n', '\n '.join(ins))
 
         res = self.process_single(row, explain=True)
@@ -57,6 +57,14 @@ class AbstractCalculator(object):
     def __add__(self, other):
 
         return AbstractCalculator(self.name, self.operations+other.operations)
+
+    def add_operation_field_info(self, section = None, origin = None):
+
+        for op in self.operations:
+            if section is not None:
+                op.section = section
+            if origin is not None:
+                op.origin = origin
 
     def process_single(self, row, explain=False):
         """

@@ -11,14 +11,21 @@ operations:
     method: 'max'
     fields: ['bvmt_trial2', 'bvmt_trial3']
     out_field: bvmt_retention_denom
+  
   - type: equation
-    equation: 'bvmt_delay/bvmt_retention_denom'
+    equation: 'bvmt_retention_denom - bvmt_trial1'
+    fields: [ 'bvmt_trial1', 'bvmt_retention_denom']
+    out_field: bvmt_learning
+    
+  - type: equation
+    equation: '100*(bvmt_delay/bvmt_retention_denom)'
     fields: [ 'bvmt_delay', 'bvmt_retention_denom']
     out_field: bvmt_retention
   - type: clip
     field: bvmt_retention
     lower: 0
-    upper: 1
+    upper: 100
+    
   - type: equation
     equation: 'bvmt_hits-bvmt_false_pos'
     fields: ['bvmt_hits', 'bvmt_false_pos']

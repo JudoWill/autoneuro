@@ -2,12 +2,15 @@ short_name: 'norman_stroop'
 reference: 'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3154384/'
 
 operations:
+
   - type: categorical
-    in_field: gender
+    in_field: sex
     out_field: norman_gender
     mapping:
       male: 0
       female: 1
+      2: 1
+      1: 0
 
   - type: categorical
     in_field: race
@@ -15,6 +18,8 @@ operations:
     mapping:
       white: 0
       AA: 1
+      2: 1
+      1: 0
 
   - type: binned_scaling
     measure_col: stroopcolor
@@ -130,7 +135,7 @@ operations:
 
   - type: equation_filter
     fields: ['norman_race', 'age', 'education', 'stroopcolor_scaled', 'norman_gender']
-    out_field: 'stroopcolor_norman'
+    out_field: 'stroopcolor_norman_z'
     result_type: 'standard_score'
     equations:
       - filter: '(norman_race == 0 ) & ((age >= 18) & (age <= 66))'
@@ -141,7 +146,7 @@ operations:
 
   - type: equation_filter
     fields: ['norman_race', 'age','education', 'stroopcolorword_scaled', 'norman_gender']
-    out_field: 'stroopcolorword_norman'
+    out_field: 'stroopcolorword_norman_z'
     result_type: 'standard_score'
     equations:
       - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'
@@ -154,7 +159,7 @@ operations:
 
   - type: equation_filter
     fields: ['norman_race', 'age','education', 'stroopword_scaled', 'norman_gender']
-    out_field: 'stroopword_norman'
+    out_field: 'stroopword_norman_z'
     result_type: 'standard_score'
     equations:
       - filter: '(norman_race == 0) & ((age >= 18) & (age <= 66))'

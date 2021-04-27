@@ -22,7 +22,17 @@ operations:
    equation: "letterfluencys_q1+letterfluencys_q2+letterfluencys_q3+letterfluencys_q4"
    fields: ['letterfluencys_q1', 'letterfluencys_q2', 'letterfluencys_q3', 'letterfluencys_q4']
    out_field: 'letterfluencys_total'
-   
+
+ - type: equation
+   equation: "letterfluencyf_pers+letterfluencya_pers+letterfluencys_pers"
+   fields: ['letterfluencyf_pers', 'letterfluencya_pers', 'letterfluencys_pers']
+   out_field: 'letterfluencyfas_pers'
+
+ - type: equation
+   equation: "letterfluencyf_intr+letterfluencya_intr+letterfluencys_intr"
+   fields: ['letterfluencyf_intr', 'letterfluencya_intr', 'letterfluencys_intr']
+   out_field: 'letterfluencyfas_intr'
+
    #AS: LetterFluencyS.intr
    #AT: LetterFluencyS.pers
    
@@ -34,7 +44,7 @@ operations:
  - type: normative_lookup
    measure_col: letterfluencyfas_total
    filter_cols: ['age', 'education']
-   out_name: 'letterfluencyfas_total_heaton'
+   out_name: 'letterfluencyfas_total_heaton_z'
 
    table:
     - filter: (16 <= age) & (age <= 59) & (0 <= education) & (education <= 8)

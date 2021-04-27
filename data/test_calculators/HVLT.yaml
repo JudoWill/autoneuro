@@ -1,0 +1,40 @@
+name: 'HVLT'
+short_name: 'HVLT'
+
+
+operations:
+  - type: equation
+    equation: 'hvlt_trial1+hvlt_trial2+hvlt_trial3'
+    fields: ['hvlt_trial1', 'hvlt_trial2', 'hvlt_trial3']
+    out_field: hvlt_immediate
+  - type: agg
+    method: 'max'
+    fields: ['hvlt_trial2', 'hvlt_trial3']
+    out_field: hvlt_retention_denom
+  - type: agg
+    method: 'sum'
+    fields: ['hvlt1pers', 'hvlt2pers', 'hvlt2pers']
+    out_field: hvlt_pers
+  - type: agg
+    method: 'sum'
+    fields: ['hvlt1intr', 'hvlt1intr', 'hvlt1intr']
+    out_field: hvlt_intr
+
+    
+  - type: equation
+    equation: 'hvlt_retention_denom - hvlt_trial1'
+    fields: [ 'hvlt_trial1', 'hvlt_retention_denom']
+    out_field: hvlt_learning
+  - type: equation
+    equation: '100*(hvlt_delay/hvlt_retention_denom)'
+    fields: [ 'hvlt_delay', 'hvlt_retention_denom']
+    out_field: hvlt_retention
+  - type: clip
+    field: hvlt_retention
+    lower: 0
+    upper: 100
+  - type: equation
+    equation: 'hvlt_hits-hvlt_false_pos'
+    fields: ['hvlt_hits', 'hvlt_false_pos']
+    out_field: 'hvlt_recognition'
+

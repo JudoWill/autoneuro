@@ -3,9 +3,11 @@
 __all__ = ['create_scaling', 'check_battery', 'AbstractBattery', 'BVMTBattery', 'HVLTBattery', 'SENASWordlistBattery',
            'LetterFluencyBattery', 'CategoryFluencyAnimalsBattery', 'BNT30Battery', 'ClockDrawingBattery',
            'ROCFBattery', 'GroovedPegBoardBattery', 'TrailABattery', 'TrailBBattery', 'WAIS4DigitSymbolBattery',
-           'mWCSTBattery', 'StroopBattery']
+           'mWCSTBattery', 'StroopBattery', 'MMSEBattery', 'DemographicsBattery']
 
 # Cell
+
+
 
 import os
 import yaml
@@ -15,7 +17,7 @@ import numpy as np
 
 from .calculators import *
 from .operators import *
-from .field_mapping import FieldMapper
+from .field_mapping import *
 
 # Cell
 # hide
@@ -36,7 +38,7 @@ def check_battery(battery_cls, neuro_data, check_mean = False):
 
     battery = battery_cls.from_defaults()
 
-    clean_data = neuro_data[battery.required_fields].dropna()
+    clean_data = neuro_data[battery.required_fields].dropna(how = 'all')
     assert len(clean_data.index) > 0, 'No data matching these fields was found.'
 
     results = battery.scaled_data(clean_data)
@@ -46,7 +48,7 @@ def check_battery(battery_cls, neuro_data, check_mean = False):
     if missing_too_much.any():
         items = missing_frac[missing_too_much].to_dict().items()
         msg = [f'{field}: {val}' for field, val in items]
-        assert False, 'Too many Nans: ' + ', '.join(msg)
+        print('Possible exessive Nans: ' + ', '.join(msg))
 
     if battery.z_scaled & check_mean:
         means = results.mean()
@@ -55,18 +57,32 @@ def check_battery(battery_cls, neuro_data, check_mean = False):
 
     print(battery.explain(clean_data.iloc[0]))
 
-    results.plot(kind = 'hist')
+    try:
+        results.plot(kind = 'hist')
+    except:
+        pass
 
 
 # Cell
 
 class AbstractBattery(object):
 
+    section = None
+
     def __init__(self, calculator, scaled_fields, z_scaled = True):
 
         self.calculator = calculator
         self.scaled_fields = scaled_fields
         self.z_scaled = z_scaled
+        self.add_operation_field_info()
+
+    def add_operation_field_info(self, section = None, origin = None):
+
+        if section is None:
+            section = self.section
+
+        self.calculator.add_operation_field_info(section = section,
+                                                 origin = origin)
 
     @property
     def required_fields(self):
@@ -74,6 +90,9 @@ class AbstractBattery(object):
 
     def explain(self, data):
         return self.calculator.explain(data)
+
+    def __call__(self, df):
+        return self.calculator.process_dataframe(df)
 
     def scaled_data(self, df):
 
@@ -90,6 +109,8 @@ class AbstractBattery(object):
 
 class BVMTBattery(AbstractBattery):
 
+    section = 'BVMT-R'
+
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
@@ -100,7 +121,7 @@ class BVMTBattery(AbstractBattery):
         heaton_bvmt_calc = TestCalculator.from_config(yaml.full_load(open(heaton_norm_definition)))
 
         return BVMTBattery(bvmt_calc + heaton_bvmt_calc,
-                           ['bvmt_immediate_heaton','bvmt_retention_heaton'])
+                           ['bvmt_immediate_heaton_z','bvmt_retention_heaton_z'])
 
 
 
@@ -109,19 +130,26 @@ class BVMTBattery(AbstractBattery):
 
 class HVLTBattery(AbstractBattery):
 
+    section = 'HVLT-R'
+
     @staticmethod
     def from_defaults(root_data = 'data/'):
+
+        hvlt_test_definition = os.path.join(root_data, 'test_calculators/HVLT.yaml')
+        hvlt_calc = TestCalculator.from_config(yaml.full_load(open(hvlt_test_definition)))
 
         heaton_hvlt_norm_definition = os.path.join(root_data, 'norms/from_kate/heaton_hvlt.yaml')
         heaton_hvlt_calc = TestCalculator.from_config(yaml.full_load(open(heaton_hvlt_norm_definition)))
 
-        return HVLTBattery(heaton_hvlt_calc,
-                           ['hvlt_recognition_heaton', 'hvlt_delay_heaton', 'hvlt_total_heaton'])
+        return HVLTBattery(heaton_hvlt_calc+hvlt_calc,
+                           ['hvlt_recognition_heaton_z', 'hvlt_delay_heaton_z', 'hvlt_total_heaton_z'])
 
 # Cell
 # hide
 
 class SENASWordlistBattery(AbstractBattery):
+
+    source = 'SENAS Word List Learning'
 
     @staticmethod
     def from_defaults(root_data = 'data/'):
@@ -138,6 +166,8 @@ class SENASWordlistBattery(AbstractBattery):
 
 class LetterFluencyBattery(AbstractBattery):
 
+    section = 'Letter Fluency'
+
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
@@ -145,7 +175,7 @@ class LetterFluencyBattery(AbstractBattery):
         phenomic_calc = TestCalculator.from_config(yaml.full_load(open(phenomic_placeholder)))
 
         return LetterFluencyBattery(phenomic_calc,
-                                    ['letterfluencyfas_total_heaton'],
+                                    ['letterfluencyfas_total_heaton_z'],
                                     z_scaled=True)
 
 # Cell
@@ -153,11 +183,13 @@ class LetterFluencyBattery(AbstractBattery):
 
 class CategoryFluencyAnimalsBattery(AbstractBattery):
 
+    section = 'Category Fluency: Animals'
+
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
-        heaton_gender = CategoricalOp('gender', {'male': 1, 'female': 2}, 'heaton_gender')
-        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 4: 2}, 'heaton_race')
+        heaton_gender = CategoricalOp('sex', {'male': 1, 'female': 2, 1: 1, 2: 2}, 'heaton_gender')
+        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 2: 1, 1: 2}, 'heaton_race')
 
         total_op = EquationOp("categoryfluency_total",
                               "categoryfluency_q1+categoryfluency_q2+categoryfluency_q3+categoryfluency_q4",
@@ -170,7 +202,7 @@ class CategoryFluencyAnimalsBattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'categoryfluency_total_scaled',
-                                                          'categoryfluency_total_heaton',
+                                                          'categoryfluency_total_heaton_z',
                                                           extra_filter = 'heaton_race == 2')
 
 
@@ -179,7 +211,7 @@ class CategoryFluencyAnimalsBattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'categoryfluency_total_scaled',
-                                                          'categoryfluency_total_heaton',
+                                                          'categoryfluency_total_heaton_z',
                                                           extra_filter = 'heaton_race == 1')
 
 
@@ -194,12 +226,14 @@ class CategoryFluencyAnimalsBattery(AbstractBattery):
                                ])
 
         return CategoryFluencyAnimalsBattery(scaler,
-                                      ['categoryfluency_total_heaton'])
+                                      ['categoryfluency_total_heaton_z'])
 
 # Cell
 # hide
 
 class BNT30Battery(AbstractBattery):
+
+    section = 'Boston Naming Test-30 (BNT-30)'
 
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
@@ -221,25 +255,31 @@ class BNT30Battery(AbstractBattery):
 
 class ClockDrawingBattery(AbstractBattery):
 
+    section = 'Visuoconstruction'
+
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
 
-        total_op = EquationOp("clockcommand1_plc",
-                              "clockcommand1",
-                              ['clockcommand1', 'clockcopy1'])
+        sum_op = EquationOp("clocksum",
+                            "clockcommand2+clockcopy2",
+                            ['clockcommand2', 'clockcopy2'])
 
+        plc_op = EquationOp("clocksum_plc",
+                            "clocksum",
+                            ['clocksum'])
 
-        calc = TestCalculator('clockdrawing_placeholder',
-                              [total_op])
+        calc = TestCalculator('clockdrawing',
+                              [sum_op, plc_op])
 
         return ClockDrawingBattery(calc,
-                                   ['clockcommand1_plc'],
+                                   ['clocksum_plc'],
                                    z_scaled=False)
 
 # Cell
 # hide
 
 class ROCFBattery(AbstractBattery):
+    section = 'Visuoconstruction'
 
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
@@ -261,12 +301,15 @@ class ROCFBattery(AbstractBattery):
 
 class GroovedPegBoardBattery(AbstractBattery):
 
+    section = 'Grooved Pegboard'
 
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
-        heaton_gender = CategoricalOp('gender', {'male': 1, 'female': 2}, 'heaton_gender')
-        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 4: 2}, 'heaton_race')
+        heaton_gender = CategoricalOp('sex', {'male': 1, 'female': 2,
+                                              1: 1, 2: 2}, 'heaton_gender')
+        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 4: 2,
+                                             1: 2, 2: 1}, 'heaton_race')
 
         heaton_scaling = pd.read_csv('data/norms/from_kate/sheets/Heaton.csv')
         gpd = create_scaling(heaton_scaling, 'groovedpegdom', 'groovedpegdom_scaled')
@@ -276,55 +319,61 @@ class GroovedPegBoardBattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'groovedpegdom_scaled',
-                                                          'groovedpegdom_heaton',
+                                                          'groovedpegdom_heaton_z',
                                                           extra_filter = 'heaton_race == 2')
 
         grooved_peg_ndom_2 = MultiLookupOp.from_sheet_format('data/norms/from_kate/sheets/GPN.csv',
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender', 'heaton_race', 'education'],
                                                           'groovedpegnondom_scaled',
-                                                          'groovedpegnondom_heaton',
+                                                          'groovedpegnondom_heaton_z',
                                                           extra_filter = 'heaton_race == 2')
 
         grooved_peg_dom_1 = MultiLookupOp.from_sheet_format('data/norms/from_kate/sheets/GPD_AA.csv',
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'groovedpegdom_scaled',
-                                                          'groovedpegdom_heaton',
+                                                          'groovedpegdom_heaton_z',
                                                           extra_filter = 'heaton_race == 1')
 
         grooved_peg_ndom_1 = MultiLookupOp.from_sheet_format('data/norms/from_kate/sheets/GPN_AA.csv',
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender', 'heaton_race', 'education'],
                                                           'groovedpegnondom_scaled',
-                                                          'groovedpegnondom_heaton',
+                                                          'groovedpegnondom_heaton_z',
                                                           extra_filter = 'heaton_race == 1')
 
         grooved_peg_dom_1.incoperate(grooved_peg_dom_2)
         grooved_peg_ndom_1.incoperate(grooved_peg_ndom_2)
 
+        mean_op = EquationOp('groovedpegboth',
+                              '(groovedpegdom+groovedpegnondom)/2',
+                              ['groovedpegdom', 'groovedpegnondom'])
+
 
 
         scaler = TestCalculator('grooved_pegboard_scaling',
-                               [heaton_gender, heaton_race,
+                               [heaton_gender, heaton_race, mean_op,
                                 AbstractOperation.from_config(gpd),
                                 AbstractOperation.from_config(gpn),
                                 grooved_peg_dom_1, grooved_peg_ndom_1,
                                ])
 
         return GroovedPegBoardBattery(scaler,
-                           ['groovedpegdom_heaton', 'groovedpegnondom_heaton'])
+                           ['groovedpegdom_heaton_z', 'groovedpegnondom_heaton_z'])
 
 # Cell
 # hide
 
 class TrailABattery(AbstractBattery):
 
+    section = 'Trail Making Test'
+
     @staticmethod
     def from_defaults(root_data = 'data/'):
 
-        heaton_gender = CategoricalOp('gender', {'male': 1, 'female': 2}, 'heaton_gender')
-        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 4: 2}, 'heaton_race')
+        heaton_gender = CategoricalOp('sex', {'male': 1, 'female': 2, 1: 1, 2: 2}, 'heaton_gender')
+        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 2: 1, 1: 2}, 'heaton_race')
 
         heaton_scaling = pd.read_csv('data/norms/from_kate/sheets/Heaton.csv')
         traila_scaling = create_scaling(heaton_scaling, 'traila', 'traila_scaled')
@@ -333,7 +382,7 @@ class TrailABattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'traila_scaled',
-                                                          'traila_heaton',
+                                                          'traila_heaton_z',
                                                           extra_filter = 'heaton_race == 2')
 
 
@@ -342,7 +391,7 @@ class TrailABattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'traila_scaled',
-                                                          'traila_heaton',
+                                                          'traila_heaton_z',
                                                           extra_filter = 'heaton_race == 1')
 
 
@@ -356,19 +405,20 @@ class TrailABattery(AbstractBattery):
                                ])
 
         return TrailABattery(scaler,
-                             ['traila_heaton'])
+                             ['traila_heaton_z'])
 
 # Cell
 # hide
 
 class TrailBBattery(AbstractBattery):
 
+    section = 'Trail Making Test'
+
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
 
-        heaton_gender = CategoricalOp('gender', {'male': 1, 'female': 2}, 'heaton_gender')
-        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 4: 2}, 'heaton_race')
-
+        heaton_gender = CategoricalOp('sex', {'male': 1, 'female': 2, 1: 1, 2: 2}, 'heaton_gender')
+        heaton_race = CategoricalOp('race', {'AA': 1, 'white': 2, 'asian': 2, 2: 1, 1: 2}, 'heaton_race')
         heaton_scaling = pd.read_csv('data/norms/from_kate/sheets/Heaton.csv')
         trailb_scaling = create_scaling(heaton_scaling, 'trailb', 'trailb_scaled')
 
@@ -376,14 +426,14 @@ class TrailBBattery(AbstractBattery):
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'trailb_scaled',
-                                                          'trailb_heaton',
+                                                          'trailb_heaton_z',
                                                           extra_filter = 'heaton_race == 2')
 
         trailb_heaton_1 = MultiLookupOp.from_sheet_format('data/norms/from_kate/sheets/TrailsB_AA.csv',
                                                           HEATON_MAPPINGS,
                                                           ['age', 'heaton_gender','heaton_race',  'education'],
                                                           'trailb_scaled',
-                                                          'trailb_heaton',
+                                                          'trailb_heaton_z',
                                                           extra_filter = 'heaton_race == 1')
         trailb_heaton_1.incoperate(trailb_heaton_2)
         scaler = TestCalculator('trailB_scaling',
@@ -393,7 +443,7 @@ class TrailBBattery(AbstractBattery):
                                ])
 
         if final_cols is None:
-            final_cols = ['trailb_heaton']
+            final_cols = ['trailb_heaton_z']
 
         return TrailBBattery(scaler,
                              final_cols)
@@ -403,23 +453,44 @@ class TrailBBattery(AbstractBattery):
 
 class WAIS4DigitSymbolBattery(AbstractBattery):
 
+    section = 'WAIS-III Coding and Copy'
+
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
 
-        wais4_test_definition = os.path.join(root_data, 'norms/placeholders/wais4.yaml')
-        wais4_calc = TestCalculator.from_config(yaml.full_load(open(wais4_test_definition)))
+        total_op = EquationOp('digitspan',
+                              'digitsforward+digitsbackward+digitssequencing',
+                              ['digitsforward', 'digitsbackward', 'digitssequencing'])
+        plc_op = EquationOp('digitspan_plc',
+                              'digitspan',
+                              ['digitspan'])
+        dfs_op = ReverseLookupOp.from_sheet_format('data/norms/from_kate/sheets/DSF.csv',
+                                                   'digitsforward', 'digitsforward_wais4_z')
+        dbs_op = ReverseLookupOp.from_sheet_format('data/norms/from_kate/sheets/DSB.csv',
+                                                   'digitsbackward', 'digitsbackward_wais4_z')
+        dss_op = ReverseLookupOp.from_sheet_format('data/norms/from_kate/sheets/DSS.csv',
+                                                   'digitssequencing', 'digitssequencing_wais4_z')
+
+        scaler = TestCalculator('wais4_digit',
+                                [total_op, plc_op,
+                                 dfs_op, dbs_op, dss_op])
 
         if final_cols is None:
-            final_cols =  ['digitsforwardwais4_plc']
+            final_cols = ['digitsforward_wais4_z',
+                          'digitsbackward_wais4_z',
+                          'digitssequencing_wais4_z']
 
-        return WAIS4DigitSymbolBattery(wais4_calc,
-                               final_cols,
-                                z_scaled=False)
+
+        return WAIS4DigitSymbolBattery(scaler,
+                                       final_cols,
+                                       z_scaled=False)
 
 # Cell
 # hide
 
 class mWCSTBattery(AbstractBattery):
+
+    section = 'M-WCST'
 
     @staticmethod
     def from_defaults(root_data = 'data/'):
@@ -428,8 +499,7 @@ class mWCSTBattery(AbstractBattery):
         calc = TestCalculator.from_config(yaml.full_load(open(test_definition)))
 
         return mWCSTBattery(calc,
-                                ['mwcstcat_plc', 'mwcstpersev_plc',
-                                 'mwcsterrors_plc', 'mwcstpercentpersev_plc'],
+                                [],
                                 z_scaled=False)
 
 # Cell
@@ -437,13 +507,69 @@ class mWCSTBattery(AbstractBattery):
 
 class StroopBattery(AbstractBattery):
 
+    section = 'Stroop Test'
+
     @staticmethod
     def from_defaults(root_data = 'data/', final_cols = None):
 
         stroop_test_definition = os.path.join(root_data, 'norms/norman/norman_stroop_regnorm.yaml')
         stroop_calc = TestCalculator.from_config(yaml.full_load(open(stroop_test_definition)))
 
+        inter_op = EquationOp('stroop_interference',
+                              'stroopcolorword-(stroopword*stroopcolor)/(stroopword+stroopcolor)',
+                              ['stroopcolorword', 'stroopword', 'stroopcolor'])
+
+        stroop_calc = stroop_calc + TestCalculator('stroop_extra', [inter_op])
+
+
         if final_cols is None:
-            final_cols = ['stroopword_norman', 'stroopcolor_norman', 'stroopcolorword_norman']
+            final_cols = ['stroopword_norman_z', 'stroopcolor_norman_z', 'stroopcolorword_norman_z']
 
         return StroopBattery(stroop_calc, final_cols)
+
+# Cell
+
+class MMSEBattery(AbstractBattery):
+
+    section = 'MMSE'
+
+
+    @staticmethod
+    def from_defaults(root_data = 'data/', final_cols = None):
+
+        inter_op = EquationOp('mmse_plc',
+                              'mmse',
+                              ['mmse'])
+        calc = TestCalculator('mmse_extra', [inter_op])
+
+        if final_cols is None:
+            final_cols = ['mmse_plc']
+
+        return MMSEBattery(calc, final_cols,
+                             z_scaled=False)
+
+# Cell
+
+class DemographicsBattery(AbstractBattery):
+
+    @staticmethod
+    def from_defaults(root_data = 'data/', final_cols = None):
+
+        race_op  = CategoricalOp('race',
+                                 {2: 'AA',
+                                  1: 'white',
+                                  3: 'asian',
+                                  'AA': 'AA',
+                                  'white': 'white',
+                                  'asian': 'asian',
+                                 }, 'race_desc')
+
+        calc = TestCalculator('demographics', [race_op])
+
+        if final_cols is None:
+            final_cols = ['race_desc']
+
+        return DemographicsBattery(calc, final_cols,
+                                   z_scaled=False)
+
+

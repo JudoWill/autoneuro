@@ -19,7 +19,7 @@ operations:
    out_field: 'mwcsterrors_plc'
    
  - type: equation
-   equation: "mwcstpersev/mwcsterrors"
+   equation: "100*mwcstpersev/mwcsterrors"
    fields: ['mwcstpersev', 'mwcsterrors']
    out_field: 'mwcstpercentpersev'
    

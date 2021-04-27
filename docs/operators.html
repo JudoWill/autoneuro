@@ -67,7 +67,7 @@ The third will require an additional strategy effort.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EquationOp" class="doc_header"><code>class</code> <code>EquationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L58" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationOp</code>(<strong><code>out_field</code></strong>, <strong><code>equation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="EquationOp" class="doc_header"><code>class</code> <code>EquationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L84" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationOp</code>(<strong><code>out_field</code></strong>, <strong><code>equation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 <p>Manipulate values with 1numexpr1 equations.</p>
 
@@ -129,6 +129,21 @@ The third will require an additional strategy effort.</p>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>&lt;ipython-input-5-f7bfcf615f94&gt;:86: FutureWarning: The `truediv` parameter in pd.eval is deprecated and will be removed in a future version.
+  res = pd.eval(self.equation, local_dict=data.to_dict(), truediv=True)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -162,6 +177,59 @@ The third will require an additional strategy effort.</p>
 <pre>Used Equation: bvmt_trial1+bvmt_trial2+bvmt_trial3 = 18 = bvmt_immediate
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>&lt;ipython-input-5-f7bfcf615f94&gt;:86: FutureWarning: The `truediv` parameter in pd.eval is deprecated and will be removed in a future version.
+  res = pd.eval(self.equation, local_dict=data.to_dict(), truediv=True)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It can also inherently create its own data-dictionary field mapping row.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">total_op</span><span class="o">.</span><span class="n">to_field_mapping</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>internal_field                         bvmt_immediate
+calculation       bvmt_trial1+bvmt_trial2+bvmt_trial3
+origin                          autoneuro_calculation
+section                                          None
+dtype: object</pre>
+</div>
+
 </div>
 
 </div>
@@ -224,6 +292,15 @@ out_field: 'recognition'</code></pre>
 </div>
 </div>
 
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>&lt;ipython-input-5-f7bfcf615f94&gt;:86: FutureWarning: The `truediv` parameter in pd.eval is deprecated and will be removed in a future version.
+  res = pd.eval(self.equation, local_dict=data.to_dict(), truediv=True)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -249,7 +326,7 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="AggregationOp" class="doc_header"><code>class</code> <code>AggregationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L146" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AggregationOp</code>(<strong><code>out_field</code></strong>, <strong><code>aggregation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="AggregationOp" class="doc_header"><code>class</code> <code>AggregationOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L175" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AggregationOp</code>(<strong><code>out_field</code></strong>, <strong><code>aggregation</code></strong>, <strong><code>fields</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -342,6 +419,15 @@ So, we use an <a href="/autoneuro/operators.html#AggregationOp"><code>Aggregatio
 </div>
 </div>
 
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>&lt;ipython-input-5-f7bfcf615f94&gt;:86: FutureWarning: The `truediv` parameter in pd.eval is deprecated and will be removed in a future version.
+  res = pd.eval(self.equation, local_dict=data.to_dict(), truediv=True)
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -367,7 +453,7 @@ By convention we clip these to a [0,1] scale, which we'll need an operation for 
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ClipOp" class="doc_header"><code>class</code> <code>ClipOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L202" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ClipOp</code>(<strong><code>field</code></strong>, <strong><code>lower</code></strong>=<em><code>0</code></em>, <strong><code>upper</code></strong>=<em><code>1</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="ClipOp" class="doc_header"><code>class</code> <code>ClipOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L235" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ClipOp</code>(<strong><code>field</code></strong>, <strong><code>lower</code></strong>=<em><code>0</code></em>, <strong><code>upper</code></strong>=<em><code>1</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -454,9 +540,48 @@ Our example has an <code>immediate</code> of 18, a deficit of 9, roughly 2 stds.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="MeanStdNormative" class="doc_header"><code>class</code> <code>MeanStdNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L290" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MeanStdNormative</code>(<strong><code>flt</code></strong>, <strong><code>mean</code></strong>, <strong><code>std</code></strong>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
+<h2 id="MeanStdNormative" class="doc_header"><code>class</code> <code>MeanStdNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L327" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MeanStdNormative</code>(<strong><code>flt</code></strong>, <strong><code>mean</code></strong>, <strong><code>std</code></strong>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
 </blockquote>
 <p>Deal with mean/std scaled -&gt; percentile lookup tables</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sometimes, there is also a need for a <code>RangeNormative</code>. This is an instance where a table is formed such that a scaled score is determined from a table of max/min values.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="NormativeLookupOp" class="doc_header"><code>class</code> <code>NormativeLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L362" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NormativeLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+</blockquote>
+<p>Lookup table with normalized scores.</p>
 
 </div>
 
@@ -486,9 +611,9 @@ Our example has an <code>immediate</code> of 18, a deficit of 9, roughly 2 stds.
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="NormativeLookupOp" class="doc_header"><code>class</code> <code>NormativeLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L324" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NormativeLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="LookupNormative" class="doc_header"><code>class</code> <code>LookupNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L427" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LookupNormative</code>(<strong><code>flt</code></strong>, <strong><code>mapping</code></strong>, <strong><code>post</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
 </blockquote>
-<p>Lookup table with normalized scores.</p>
+<p>Deal with scaled -&gt; percentile lookup tables</p>
 
 </div>
 
@@ -643,7 +768,7 @@ This is done to help <em>normalize</em> the raw values before entering the regre
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BinnedScalingOp" class="doc_header"><code>class</code> <code>BinnedScalingOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L384" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BinnedScalingOp</code>(<strong><code>bins</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_field</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="BinnedScalingOp" class="doc_header"><code>class</code> <code>BinnedScalingOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L487" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BinnedScalingOp</code>(<strong><code>bins</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_field</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -731,7 +856,7 @@ The race also needs to be converted with white = 0 and AA = 1.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="CategoricalOp" class="doc_header"><code>class</code> <code>CategoricalOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L459" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CategoricalOp</code>(<strong><code>measure_col</code></strong>, <strong><code>mapping</code></strong>, <strong><code>out_col</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="CategoricalOp" class="doc_header"><code>class</code> <code>CategoricalOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L567" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CategoricalOp</code>(<strong><code>measure_col</code></strong>, <strong><code>mapping</code></strong>, <strong><code>out_col</code></strong>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -811,7 +936,7 @@ The <a href="/autoneuro/operators.html#EquationFilterOp"><code>EquationFilterOp<
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EquationFilterOp" class="doc_header"><code>class</code> <code>EquationFilterOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L518" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationFilterOp</code>(<strong><code>fields</code></strong>, <strong><code>regressions</code></strong>, <strong><code>out_field</code></strong>, <strong><code>result_type</code></strong>=<em><code>'zscale'</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
+<h2 id="EquationFilterOp" class="doc_header"><code>class</code> <code>EquationFilterOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L629" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EquationFilterOp</code>(<strong><code>fields</code></strong>, <strong><code>regressions</code></strong>, <strong><code>out_field</code></strong>, <strong><code>result_type</code></strong>=<em><code>'zscale'</code></em>) :: <a href="/autoneuro/operators.html#AbstractOperation"><code>AbstractOperation</code></a></p>
 </blockquote>
 
 </div>
@@ -910,38 +1035,6 @@ Examine the <code>data/norms/norman/norman_bvmt_regnorm.yaml</code> for a comple
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="LookupNormative" class="doc_header"><code>class</code> <code>LookupNormative</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L591" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LookupNormative</code>(<strong><code>flt</code></strong>, <strong><code>mapping</code></strong>, <strong><code>post</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/operators.html#AbstractNormative"><code>AbstractNormative</code></a></p>
-</blockquote>
-<p>Deal with scaled -&gt; percentile lookup tables</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This <a href="/autoneuro/operators.html#MultiLookupOp"><code>MultiLookupOp</code></a> is just a light wrapper around the <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a> that implements some helper features to create these items from "Kate Excel Sheet" format.</p>
@@ -960,7 +1053,7 @@ Examine the <code>data/norms/norman/norman_bvmt_regnorm.yaml</code> for a comple
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="MultiLookupOp" class="doc_header"><code>class</code> <code>MultiLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L648" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultiLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a></p>
+<h2 id="MultiLookupOp" class="doc_header"><code>class</code> <code>MultiLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L704" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MultiLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#NormativeLookupOp"><code>NormativeLookupOp</code></a></p>
 </blockquote>
 <p>Lookup table with normalized scores.</p>
 
@@ -1026,6 +1119,80 @@ Examine the <code>data/norms/norman/norman_bvmt_regnorm.yaml</code> for a comple
 <pre>Matched: ((45 &lt;= age) &amp; (age &lt; 50)) &amp; ((12 &lt; education) &amp; (education &lt;= 13)) &amp; (heaton_gender == 1)
 Mapped to: 57
 Scaled to: z=0.7
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sometimes we have these files in a reversed format in which one looks for the observed value in the table and the scaled value is in the index.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ReverseLookupOp" class="doc_header"><code>class</code> <code>ReverseLookupOp</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/operators.py#L770" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ReverseLookupOp</code>(<strong><code>lookup_table</code></strong>, <strong><code>filter_cols</code></strong>, <strong><code>measure_col</code></strong>, <strong><code>out_name</code></strong>) :: <a href="/autoneuro/operators.html#MultiLookupOp"><code>MultiLookupOp</code></a></p>
+</blockquote>
+<p>Lookup table with normalized scores.</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data/norms/from_kate/sheets/DSF.csv&#39;</span>
+<span class="n">rlookup</span> <span class="o">=</span> <span class="n">ReverseLookupOp</span><span class="o">.</span><span class="n">from_sheet_format</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;digit_symbol_forward&#39;</span><span class="p">,</span> <span class="s1">&#39;dsf_z&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rlookup</span><span class="o">.</span><span class="n">explain</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">83</span><span class="p">,</span> <span class="s1">&#39;digit_symbol_forward&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}))</span>        
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Matched: (80 &lt;= age) &amp; (age &lt; 85)
+Mapped to: 14.0
+Scaled to: z=1.3333333333333333
 </pre>
 </div>
 </div>

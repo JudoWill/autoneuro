@@ -5,7 +5,7 @@ operations:
   - type: normative_lookup
     measure_col: bvmt_immediate
     filter_cols: ['age']
-    out_name: 'bvmt_immediate_heaton'
+    out_name: 'bvmt_immediate_heaton_z'
 
     table:
       - filter: (18 <= age) & (age <= 21)
@@ -70,62 +70,62 @@ operations:
   - type: normative_lookup
     measure_col: bvmt_retention
     filter_cols: ['age']
-    out_name: 'bvmt_retention_heaton'
+    out_name: 'bvmt_retention_heaton_z'
     table:
       - filter: (18 <= age) & (age <= 21)
-        mean: 0.9534
-        std: 0.066
+        mean: 95.34
+        std: 6.6
       - filter: (20 <= age) & (age <= 23)
-        mean: 0.9493
-        std: 0.0726
+        mean: 94.93
+        std: 7.26
       - filter: (24 <= age) & (age <= 25)
-        mean: 0.9508
-        std: 0.0804
+        mean: 95.08
+        std: 8.04
       - filter: (26 <= age) & (age <= 29)
-        mean: 0.9667
-        std: 0.0631
+        mean: 96.67
+        std: 6.31
       - filter: (30 <= age) & (age <= 33)
-        mean: 0.962
-        std: 0.0474
+        mean: 96.2
+        std: 4.74
       - filter: (34 <= age) & (age <= 37)
-        mean: 0.9407
-        std: 0.0884
+        mean: 94.07
+        std: 8.84
       - filter: (38 <= age) & (age <= 41)
-        mean: 0.9163
-        std: 0.0992
+        mean: 91.63
+        std: 9.92
       - filter: (42 <= age) & (age <= 45)
-        mean: 0.9455
-        std: 0.0642
+        mean: 94.55
+        std: 6.42
       - filter: (46 <= age) & (age <= 49)
-        mean: 0.9338
-        std: 0.0853
+        mean: 93.38
+        std: 8.53
       - filter: (50 <= age) & (age <= 53)
-        mean: 0.9596
-        std: 0.0731
+        mean: 95.96
+        std: 7.31
       - filter: (54 <= age) & (age <= 58)
-        mean: 0.94
-        std: 0.0843
+        mean: 94.0
+        std: 8.43
       - filter: (59 <= age) & (age <= 62)
-        mean: 0.937
-        std: 0.087
+        mean: 93.7
+        std: 8.7
       - filter: (63 <= age) & (age <= 66)
-        mean: 0.895
-        std: 0.116
+        mean: 89.5
+        std: 11.6
       - filter: (67 <= age) & (age <= 70)
-        mean: 0.903
-        std: 0.126
+        mean: 90.3
+        std: 12.6
       - filter: (71 <= age) & (age <= 74)
-        mean: 0.878
-        std: 0.143
+        mean: 87.8
+        std: 14.3
       - filter: (75 <= age) & (age <= 79)
-        mean: 0.864
-        std: 0.147
+        mean: 86.4
+        std: 14.7
 
 
   - type: normative_lookup
     measure_col: bvmt_delay
     filter_cols: ['age']
-    out_name: 'bvmt_delay_heaton'
+    out_name: 'bvmt_delay_heaton_z'
     table:
       - filter: (18 <= age) & (age <= 21)
         mean: 10.79
@@ -185,7 +185,7 @@ operations:
   - type: normative_lookup
     measure_col: bvmt_recognition
     filter_cols: ['age']
-    out_name: 'bvmt_recognition_heaton'
+    out_name: 'bvmt_recognition_heaton_z'
 
     table:
       - filter: (18 <= age) & (age <= 21)
