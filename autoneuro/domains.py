@@ -438,7 +438,7 @@ class NewVerbalMemoryBattery(VerbalMemoryBattery):
                    'cnns_hvlt4_z',
                    'cnns_hdiscrim_z']
 
-
+# Cell
 class VerbalMemoryDomain(AbstractDomain):
 
     @staticmethod
@@ -449,12 +449,7 @@ class VerbalMemoryDomain(AbstractDomain):
             batteries.append(NewVerbalMemoryBattery.from_defaults())
         else:
             batteries.append(VerbalMemoryBattery.from_defaults())
-
-
         return VerbalMemoryDomain(batteries)
-
-
-
 
 # Cell
 # hide
@@ -481,6 +476,7 @@ class NewVisuospatialMemoryBattery(VisuospatialMemoryBattery):
                    'cnns_bdiscrim_z',
                   ]
 
+# Cell
 
 class VisuospatialMemoryDomain(AbstractDomain):
 
@@ -510,6 +506,9 @@ class ProcessingSpeedBattery(ABDomainBattery):
                    'stroopword_norman_z',
                    'stroopcolor_norman_z']
 
+
+
+# Cell
 class ProcessingSpeedDomain(AbstractDomain):
 
     @staticmethod
@@ -544,8 +543,7 @@ class NewMotorBattery(MotorBattery):
     domain_cols = ['cnns_gpdom1_z',
                    'cnns_gpndom1_z']
 
-
-
+# Cell
 class MotorDomain(AbstractDomain):
 
     @staticmethod
@@ -587,6 +585,7 @@ class NewExecutiveFunctionBattery(ExecutiveFunctionBattery):
                    'stroopcolorword_norman_z']
 
 
+# Cell
 
 class ExecutiveFunctionDomain(AbstractDomain):
 
@@ -617,7 +616,7 @@ class AttentionBattery(ABDomainBattery):
                    'digitsbackward_wais4_z',
                    'digitssequencing_wais4_z']
 
-
+# Cell
 class AttentionDomain(AbstractDomain):
 
     @staticmethod
@@ -628,7 +627,6 @@ class AttentionDomain(AbstractDomain):
 
 
         return AttentionDomain(batteries)
-
 
 # Cell
 # hide
@@ -654,9 +652,11 @@ class NewLanguageBattery(LanguageBattery):
                    'cnns_bnt30_z']
 
 
+
+
+# Cell
+
 class LanguageDomain(AbstractDomain):
-
-
     @staticmethod
     def from_defaults(root_data = 'data/', method = 'new'):
 
@@ -697,8 +697,7 @@ class NewVisuoSpatialBattery(VisuoSpatialBattery):
                    'cnns_reyo_z',]
 
 
-
-
+# Cell
 
 class VisuoSpatialDomain(AbstractDomain):
 
@@ -716,7 +715,6 @@ class VisuoSpatialDomain(AbstractDomain):
         return VisuoSpatialDomain(batteries)
 
 # Cell
-# hide
 
 from .batteries import DemographicsBattery
 
@@ -809,8 +807,3 @@ class Collection(object):
 
         if path.endswith('.xls') or path.endswith('.xlsx'):
             pass
-
-
-
-
-
