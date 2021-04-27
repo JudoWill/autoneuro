@@ -2045,7 +2045,7 @@ None
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_set</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">cnac</span><span class="o">.</span><span class="n">scaled_data</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">data_set</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="n">req_fields</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DD_neuro_2021_04_27.csv&#39;</span><span class="p">)</span>
+<span class="n">data_set</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="n">req_fields</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DD_neuro_2021_04_21_scaled.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2062,8 +2062,8 @@ None
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">cnac</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">data_set</span><span class="p">,</span> <span class="s1">&#39;internal_field&#39;</span><span class="p">,</span> <span class="s1">&#39;dd_id&#39;</span><span class="p">)</span>
-<span class="n">output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DD_neuro_2021_04_27.csv&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">output</span> <span class="o">=</span> <span class="n">cnac</span><span class="o">.</span><span class="n">mapper</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">cnac</span><span class="o">.</span><span class="n">measured_data</span><span class="p">,</span> <span class="s1">&#39;internal_field&#39;</span><span class="p">,</span> <span class="s1">&#39;dd_id&#39;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bvmt_trial1&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;DD_neuro_2021_04_21_measured.csv&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
