@@ -70,7 +70,6 @@ nb_path: "03_domains.ipynb"
 
 <span class="n">mapper</span> <span class="o">=</span> <span class="n">FieldMapper</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;data/field_mappings_merged.xlsx&#39;</span><span class="p">,</span> <span class="n">post_convert</span><span class="o">=</span><span class="p">[</span><span class="n">fix_study_ids</span><span class="p">,</span> <span class="n">fix_dates</span><span class="p">])</span>
 <span class="n">map_neuro</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="n">multi_merge</span><span class="p">(</span><span class="s1">&#39;internal_field&#39;</span><span class="p">,</span> <span class="n">paths</span><span class="p">,</span> <span class="n">index_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;study_id&#39;</span><span class="p">,</span> <span class="s1">&#39;date_of_visit&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="n">req_fields</span><span class="p">)</span>
-<span class="n">map_neuro</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -330,58 +329,6 @@ But they're enough to represent each test and contain the information we need.</
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">autoneuro.batteries</span> <span class="kn">import</span> <span class="n">BVMTBattery</span><span class="p">,</span> <span class="n">HVLTBattery</span><span class="p">,</span> <span class="n">SENASWordlistBattery</span><span class="p">,</span> <span class="n">AbstractBattery</span>
-
-<span class="k">class</span> <span class="nc">VerbalMemoryBattery</span><span class="p">(</span><span class="n">ABDomainBattery</span><span class="p">):</span>
-    
-    <span class="n">section</span> <span class="o">=</span> <span class="s1">&#39;VerbalMemory Domain&#39;</span>
-    <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39;verbalmemory_domain&#39;</span>
-    
-    <span class="n">domain_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hvlt_recognition_heaton_z&#39;</span><span class="p">,</span> 
-                   <span class="s1">&#39;hvlt_delay_heaton_z&#39;</span><span class="p">,</span> 
-                   <span class="s1">&#39;hvlt_total_heaton_z&#39;</span><span class="p">]</span>
-    
-    
-<span class="k">class</span> <span class="nc">NewVerbalMemoryBattery</span><span class="p">(</span><span class="n">VerbalMemoryBattery</span><span class="p">):</span> 
-    <span class="n">prefix_ops</span> <span class="o">=</span> <span class="n">CNNSConversionOp</span><span class="o">.</span><span class="n">multi_cnns</span><span class="p">(</span><span class="s1">&#39;cnns_hvlt_t&#39;</span><span class="p">,</span>
-                                             <span class="s1">&#39;cnns_hvlt4_t&#39;</span><span class="p">,</span>
-                                             <span class="s1">&#39;cnns_hdiscrim_t&#39;</span><span class="p">,</span>
-                                             <span class="s1">&#39;cnns_hretain_t&#39;</span><span class="p">)</span>
-    <span class="n">domain_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cnns_hvlt_z&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;cnns_hvlt4_z&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;cnns_hdiscrim_z&#39;</span><span class="p">]</span>
-    
-    
-<span class="k">class</span> <span class="nc">VerbalMemoryDomain</span><span class="p">(</span><span class="n">AbstractDomain</span><span class="p">):</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">from_defaults</span><span class="p">(</span><span class="n">root_data</span> <span class="o">=</span> <span class="s1">&#39;data/&#39;</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;new&#39;</span><span class="p">):</span>
-        
-        <span class="n">batteries</span> <span class="o">=</span> <span class="p">[</span><span class="n">HVLTBattery</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">()]</span>
-        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;new&#39;</span><span class="p">:</span>
-            <span class="n">batteries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">NewVerbalMemoryBattery</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">())</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">batteries</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">VerbalMemoryBattery</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">())</span>
-
-
-        <span class="k">return</span> <span class="n">VerbalMemoryDomain</span><span class="p">(</span><span class="n">batteries</span><span class="p">)</span>    
-    
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">verb_mem_domain</span> <span class="o">=</span> <span class="n">VerbalMemoryDomain</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="n">SHOW_DATA</span><span class="p">)</span>
 <span class="n">verb_mem_domain</span><span class="o">.</span><span class="n">summarize_domain</span><span class="p">(</span><span class="n">map_neuro</span><span class="p">)</span>
 </pre></div>
@@ -539,90 +486,10 @@ None
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Visuospatial-Memory">Visuospatial Memory<a class="anchor-link" href="#Visuospatial-Memory"> </a></h1><p>Measured by the BVMT score.</p>
-
+<h1 id="Visuospatial-Memory">Visuospatial Memory<a class="anchor-link" href="#Visuospatial-Memory"> </a></h1>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="VisuospatialMemoryBattery" class="doc_header"><code>class</code> <code>VisuospatialMemoryBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L421" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>VisuospatialMemoryBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewVisuospatialMemoryBattery" class="doc_header"><code>class</code> <code>NewVisuospatialMemoryBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L429" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewVisuospatialMemoryBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#VisuospatialMemoryBattery"><code>VisuospatialMemoryBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="VisuospatialMemoryDomain" class="doc_header"><code>class</code> <code>VisuospatialMemoryDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L442" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>VisuospatialMemoryDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -792,61 +659,6 @@ None
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProcessingSpeedBattery" class="doc_header"><code>class</code> <code>ProcessingSpeedBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L461" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProcessingSpeedBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProcessingSpeedDomain" class="doc_header"><code>class</code> <code>ProcessingSpeedDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L469" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProcessingSpeedDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -997,85 +809,6 @@ None
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="MotorBattery" class="doc_header"><code>class</code> <code>MotorBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L487" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MotorBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewMotorBattery" class="doc_header"><code>class</code> <code>NewMotorBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L494" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewMotorBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#MotorBattery"><code>MotorBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="MotorDomain" class="doc_header"><code>class</code> <code>MotorDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L504" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>MotorDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -1217,85 +950,6 @@ None
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="ExecutiveFunctionBattery" class="doc_header"><code>class</code> <code>ExecutiveFunctionBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L524" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ExecutiveFunctionBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewExecutiveFunctionBattery" class="doc_header"><code>class</code> <code>NewExecutiveFunctionBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L533" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewExecutiveFunctionBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ExecutiveFunctionBattery"><code>ExecutiveFunctionBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="ExecutiveFunctionDomain" class="doc_header"><code>class</code> <code>ExecutiveFunctionDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L545" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ExecutiveFunctionDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1496,61 +1150,6 @@ None
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="AttentionBattery" class="doc_header"><code>class</code> <code>AttentionBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L564" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AttentionBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="AttentionDomain" class="doc_header"><code>class</code> <code>AttentionDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L574" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>AttentionDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -1666,85 +1265,6 @@ None
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="LanguageBattery" class="doc_header"><code>class</code> <code>LanguageBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L591" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LanguageBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewLanguageBattery" class="doc_header"><code>class</code> <code>NewLanguageBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L599" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewLanguageBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#LanguageBattery"><code>LanguageBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="LanguageDomain" class="doc_header"><code>class</code> <code>LanguageDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L609" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LanguageDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1937,85 +1457,6 @@ None
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="VisuoSpatialBattery" class="doc_header"><code>class</code> <code>VisuoSpatialBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L631" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>VisuoSpatialBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#ABDomainBattery"><code>ABDomainBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewVisuoSpatialBattery" class="doc_header"><code>class</code> <code>NewVisuoSpatialBattery</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L640" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewVisuoSpatialBattery</code>(<strong><code>calculator</code></strong>, <strong><code>scaled_fields</code></strong>, <strong><code>z_scaled</code></strong>=<em><code>True</code></em>) :: <a href="/autoneuro/domains.html#VisuoSpatialBattery"><code>VisuoSpatialBattery</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="VisuoSpatialDomain" class="doc_header"><code>class</code> <code>VisuoSpatialDomain</code><a href="https://github.com/judowill/autoneuro/tree/main/autoneuro/domains.py#L654" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>VisuoSpatialDomain</code>(<strong><code>batteries</code></strong>, <strong><code>deficit_score_name</code></strong>=<em><code>None</code></em>, <strong><code>final_fields</code></strong>=<em><code>None</code></em>) :: <a href="/autoneuro/domains.html#AbstractDomain"><code>AbstractDomain</code></a></p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -2169,7 +1610,7 @@ None
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cnac</span> <span class="o">=</span> <span class="n">Collection</span><span class="o">.</span><span class="n">from_defaults</span><span class="p">()</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span><span class="o">.</span><span class="n">scale_data</span><span class="p">()</span>
-<span class="n">cnac</span><span class="o">.</span><span class="n">scaled_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">req_fields</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+<span class="n">cnac</span><span class="o">.</span><span class="n">scaled_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">req_fields</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2201,7 +1642,6 @@ None
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th></th>
       <th>age</th>
       <th>cnns_hdiscrim_t</th>
       <th>cnns_hretain_t</th>
@@ -2224,36 +1664,10 @@ None
       <th>language_domain_deficit</th>
       <th>race_desc</th>
     </tr>
-    <tr>
-      <th>study_id</th>
-      <th>date_of_visit</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>757</th>
-      <th>2021-01-12</th>
+      <th>0</th>
       <td>48.0</td>
       <td>23.0</td>
       <td>47.0</td>
@@ -2277,8 +1691,7 @@ None
       <td>AA</td>
     </tr>
     <tr>
-      <th>759</th>
-      <th>2021-01-27</th>
+      <th>1</th>
       <td>43.0</td>
       <td>30.0</td>
       <td>25.0</td>
@@ -2302,8 +1715,7 @@ None
       <td>white</td>
     </tr>
     <tr>
-      <th>761</th>
-      <th>2021-02-09</th>
+      <th>2</th>
       <td>44.0</td>
       <td>60.0</td>
       <td>61.0</td>
@@ -2327,8 +1739,7 @@ None
       <td>AA</td>
     </tr>
     <tr>
-      <th>762</th>
-      <th>2021-03-03</th>
+      <th>3</th>
       <td>58.0</td>
       <td>22.0</td>
       <td>32.0</td>
@@ -2352,8 +1763,7 @@ None
       <td>AA</td>
     </tr>
     <tr>
-      <th>763</th>
-      <th>2021-03-04</th>
+      <th>4</th>
       <td>65.0</td>
       <td>22.0</td>
       <td>36.0</td>
